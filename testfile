@@ -1,0 +1,547 @@
+business_website/chat_widget/init_payment_with_order_session
+{
+    "customerId": "6a1450f34491a0b194b3100f",
+    "subdomain": "evercare.app.colaber.in",
+    "orderData": [
+        {
+            "mode": "Standard Order",
+            "source": "Website",
+            "title": "Eastern Black Pepper Powder 100g (Buy 2 Get 1 FREE)",
+            "deliveryMode": "store-pickup",
+            "items": [
+                {
+                    "itemId": "6a2169636fa632d550e98ddf",
+                    "type": "catalog-product",
+                    "itemType": "product",
+                    "description": "Eastern Black Pepper Powder 100g (Buy 2 Get 1 FREE)",
+                    "quantity": 2,
+                    "quantityUnit": "pcs",
+                    "amount": 11.98,
+                    "basePrice": 5.99,
+                    "salePrice": 5.99,
+                    "shippingAvailable": true,
+                    "storePickupAvailable": true,
+                    "dispatchPoints": [
+                        "6a1c18be59164b8df9d00e40"
+                    ],
+                    "storePickupDispatchPoint": {
+                        "_id": "6a1c18be59164b8df9d00e40",
+                        "id": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "contactPerson": "",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "lat": "-31.0600235",
+                        "lng": "152.8371658",
+                        "locationAddress": {
+                            "addressLine1": "13 Prior Circuit",
+                            "addressLine2": "",
+                            "city": "",
+                            "state": "New South Wales",
+                            "country": "Australia",
+                            "postalCode": "2441",
+                            "fullAddress": "13, Prior Circuit, New South Wales, 2441, Australia",
+                            "houseNumber": "13",
+                            "road": "Prior Circuit",
+                            "suburb": "",
+                            "latitude": -31.0600235,
+                            "longitude": 152.8371658,
+                            "source": "nominatim-search",
+                            "timestamp": "2026-06-04T23:41:12.015Z"
+                        },
+                        "isActive": true
+                    },
+                    "lineId": "6a2169636fa632d550e98ddf:default",
+                    "catalogId": "6a104234773dbbe2bd8595d3",
+                    "catalogueId": "6a104234773dbbe2bd8595d3",
+                    "hasBogoOffer": true,
+                    "isOfferItem": false,
+                    "isBogoOfferItem": false,
+                    "offerType": "bogo",
+                    "bogoPromotionId": "6a2a03485d77f36d52cb5b6b",
+                    "bogoPromotionCode": "BTGO-001",
+                    "bogoSourceItemId": "",
+                    "bogoFreeProductId": "6a2169636fa632d550e98ddf",
+                    "bogoFreeGroupId": "",
+                    "bogoDiscountPercent": 0
+                },
+                {
+                    "itemId": "6a2169626fa632d550e98da9",
+                    "type": "catalog-product",
+                    "itemType": "product",
+                    "description": "Double Horse Red Chilli Powder 140g (Buy 2 Get 1 FREE)",
+                    "quantity": 1,
+                    "quantityUnit": "pcs",
+                    "amount": 3.69,
+                    "basePrice": 3.69,
+                    "salePrice": 3.69,
+                    "shippingAvailable": true,
+                    "storePickupAvailable": true,
+                    "dispatchPoints": [
+                        "6a1c18be59164b8df9d00e40"
+                    ],
+                    "storePickupDispatchPoint": {
+                        "_id": "6a1c18be59164b8df9d00e40",
+                        "id": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "contactPerson": "",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "lat": "-31.0600235",
+                        "lng": "152.8371658",
+                        "locationAddress": {
+                            "addressLine1": "13 Prior Circuit",
+                            "addressLine2": "",
+                            "city": "",
+                            "state": "New South Wales",
+                            "country": "Australia",
+                            "postalCode": "2441",
+                            "fullAddress": "13, Prior Circuit, New South Wales, 2441, Australia",
+                            "houseNumber": "13",
+                            "road": "Prior Circuit",
+                            "suburb": "",
+                            "latitude": -31.0600235,
+                            "longitude": 152.8371658,
+                            "source": "nominatim-search",
+                            "timestamp": "2026-06-04T23:41:12.015Z"
+                        },
+                        "isActive": true
+                    },
+                    "lineId": "6a2169626fa632d550e98da9:default",
+                    "catalogId": "6a104234773dbbe2bd8595d3",
+                    "catalogueId": "6a104234773dbbe2bd8595d3",
+                    "hasBogoOffer": false,
+                    "isOfferItem": false,
+                    "isBogoOfferItem": false,
+                    "offerType": "bogo",
+                    "bogoPromotionId": "6a2a03485d77f36d52cb5b85",
+                    "bogoPromotionCode": "BTGO-014",
+                    "bogoSourceItemId": "",
+                    "bogoFreeProductId": "6a2169626fa632d550e98da9",
+                    "bogoFreeGroupId": "",
+                    "bogoDiscountPercent": 0
+                },
+                {
+                    "itemId": "6a216a316fa632d550e99e7f",
+                    "type": "catalog-product",
+                    "itemType": "product",
+                    "description": "Viswas Elayada Jackfruit 350g",
+                    "quantity": 1,
+                    "quantityUnit": "pcs",
+                    "amount": 5.99,
+                    "basePrice": 5.99,
+                    "salePrice": 5.99,
+                    "shippingAvailable": true,
+                    "storePickupAvailable": true,
+                    "dispatchPoints": [
+                        "6a1c18be59164b8df9d00e40"
+                    ],
+                    "storePickupDispatchPoint": {
+                        "_id": "6a1c18be59164b8df9d00e40",
+                        "id": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "contactPerson": "",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "lat": "-31.0600235",
+                        "lng": "152.8371658",
+                        "locationAddress": {
+                            "addressLine1": "13 Prior Circuit",
+                            "addressLine2": "",
+                            "city": "",
+                            "state": "New South Wales",
+                            "country": "Australia",
+                            "postalCode": "2441",
+                            "fullAddress": "13, Prior Circuit, New South Wales, 2441, Australia",
+                            "houseNumber": "13",
+                            "road": "Prior Circuit",
+                            "suburb": "",
+                            "latitude": -31.0600235,
+                            "longitude": 152.8371658,
+                            "source": "nominatim-search",
+                            "timestamp": "2026-06-04T23:41:12.015Z"
+                        },
+                        "isActive": true
+                    },
+                    "lineId": "6a216a316fa632d550e99e7f:default",
+                    "catalogId": "6a103e2a773dbbe2bd858fec",
+                    "catalogueId": "6a103e2a773dbbe2bd858fec",
+                    "hasBogoOffer": false,
+                    "isOfferItem": false,
+                    "isBogoOfferItem": false,
+                    "offerType": "",
+                    "bogoPromotionId": "",
+                    "bogoPromotionCode": "",
+                    "bogoSourceItemId": "",
+                    "bogoFreeProductId": "",
+                    "bogoFreeGroupId": "",
+                    "bogoDiscountPercent": 0
+                },
+                {
+                    "itemId": "6a2169de6fa632d550e99533",
+                    "type": "catalog-product",
+                    "itemType": "product",
+                    "description": "Adukkala Jeerakashala (Kaima) Rice 5kg",
+                    "quantity": 1,
+                    "quantityUnit": "pcs",
+                    "amount": 31.49,
+                    "basePrice": 31.49,
+                    "salePrice": 31.49,
+                    "shippingAvailable": true,
+                    "storePickupAvailable": true,
+                    "dispatchPoints": [
+                        "6a1c18be59164b8df9d00e40"
+                    ],
+                    "storePickupDispatchPoint": {
+                        "_id": "6a1c18be59164b8df9d00e40",
+                        "id": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "contactPerson": "",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "lat": "-31.0600235",
+                        "lng": "152.8371658",
+                        "locationAddress": {
+                            "addressLine1": "13 Prior Circuit",
+                            "addressLine2": "",
+                            "city": "",
+                            "state": "New South Wales",
+                            "country": "Australia",
+                            "postalCode": "2441",
+                            "fullAddress": "13, Prior Circuit, New South Wales, 2441, Australia",
+                            "houseNumber": "13",
+                            "road": "Prior Circuit",
+                            "suburb": "",
+                            "latitude": -31.0600235,
+                            "longitude": 152.8371658,
+                            "source": "nominatim-search",
+                            "timestamp": "2026-06-04T23:41:12.015Z"
+                        },
+                        "isActive": true
+                    },
+                    "lineId": "6a2169de6fa632d550e99533:default",
+                    "catalogId": "6a103e98773dbbe2bd85911d",
+                    "catalogueId": "6a103e98773dbbe2bd85911d",
+                    "hasBogoOffer": false,
+                    "isOfferItem": false,
+                    "isBogoOfferItem": false,
+                    "offerType": "",
+                    "bogoPromotionId": "",
+                    "bogoPromotionCode": "",
+                    "bogoSourceItemId": "",
+                    "bogoFreeProductId": "",
+                    "bogoFreeGroupId": "",
+                    "bogoDiscountPercent": 0
+                },
+                {
+                    "itemId": "6a2169de6fa632d550e9952f",
+                    "type": "catalog-product",
+                    "itemType": "product",
+                    "description": "Arya Idli Dosa Rice 5kg",
+                    "quantity": 1,
+                    "quantityUnit": "pcs",
+                    "amount": 16.49,
+                    "basePrice": 16.49,
+                    "salePrice": 16.49,
+                    "shippingAvailable": true,
+                    "storePickupAvailable": true,
+                    "dispatchPoints": [
+                        "6a1c18be59164b8df9d00e40"
+                    ],
+                    "storePickupDispatchPoint": {
+                        "_id": "6a1c18be59164b8df9d00e40",
+                        "id": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "contactPerson": "",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "lat": "-31.0600235",
+                        "lng": "152.8371658",
+                        "locationAddress": {
+                            "addressLine1": "13 Prior Circuit",
+                            "addressLine2": "",
+                            "city": "",
+                            "state": "New South Wales",
+                            "country": "Australia",
+                            "postalCode": "2441",
+                            "fullAddress": "13, Prior Circuit, New South Wales, 2441, Australia",
+                            "houseNumber": "13",
+                            "road": "Prior Circuit",
+                            "suburb": "",
+                            "latitude": -31.0600235,
+                            "longitude": 152.8371658,
+                            "source": "nominatim-search",
+                            "timestamp": "2026-06-04T23:41:12.015Z"
+                        },
+                        "isActive": true
+                    },
+                    "lineId": "6a2169de6fa632d550e9952f:default",
+                    "catalogId": "6a103e98773dbbe2bd85911d",
+                    "catalogueId": "6a103e98773dbbe2bd85911d",
+                    "hasBogoOffer": false,
+                    "isOfferItem": false,
+                    "isBogoOfferItem": false,
+                    "offerType": "",
+                    "bogoPromotionId": "",
+                    "bogoPromotionCode": "",
+                    "bogoSourceItemId": "",
+                    "bogoFreeProductId": "",
+                    "bogoFreeGroupId": "",
+                    "bogoDiscountPercent": 0
+                },
+                {
+                    "itemId": "6a2169636fa632d550e98ddf",
+                    "type": "catalog-product",
+                    "itemType": "product",
+                    "description": "Eastern Black Pepper Powder 100g (Buy 2 Get 1 FREE) (BOGO offer)",
+                    "quantity": 1,
+                    "quantityUnit": "pcs",
+                    "amount": 0,
+                    "basePrice": 0,
+                    "salePrice": 0,
+                    "shippingAvailable": true,
+                    "storePickupAvailable": true,
+                    "dispatchPoints": [
+                        "6a1c18be59164b8df9d00e40"
+                    ],
+                    "storePickupDispatchPoint": {
+                        "_id": "6a1c18be59164b8df9d00e40",
+                        "id": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "contactPerson": "",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "lat": "-31.0600235",
+                        "lng": "152.8371658",
+                        "locationAddress": {
+                            "addressLine1": "13 Prior Circuit",
+                            "addressLine2": "",
+                            "city": "",
+                            "state": "New South Wales",
+                            "country": "Australia",
+                            "postalCode": "2441",
+                            "fullAddress": "13, Prior Circuit, New South Wales, 2441, Australia",
+                            "houseNumber": "13",
+                            "road": "Prior Circuit",
+                            "suburb": "",
+                            "latitude": -31.0600235,
+                            "longitude": 152.8371658,
+                            "source": "nominatim-search",
+                            "timestamp": "2026-06-04T23:41:12.015Z"
+                        },
+                        "isActive": true
+                    },
+                    "lineId": "6a2169636fa632d550e98ddf:default",
+                    "catalogId": "6a104234773dbbe2bd8595d3",
+                    "catalogueId": "6a104234773dbbe2bd8595d3",
+                    "hasBogoOffer": true,
+                    "isOfferItem": true,
+                    "isBogoOfferItem": true,
+                    "offerType": "bogo",
+                    "bogoPromotionId": "6a2a03485d77f36d52cb5b6b",
+                    "bogoPromotionCode": "BTGO-001",
+                    "bogoSourceItemId": "6a2169636fa632d550e98ddf",
+                    "bogoFreeProductId": "6a2169636fa632d550e98ddf",
+                    "bogoFreeGroupId": "",
+                    "bogoDiscountPercent": 100
+                }
+            ],
+            "promotionCode": "INDIVERSE5",
+            "subtotal": 69.64,
+            "shippingCost": 0,
+            "finalAmount": 66.76,
+            "billingAddress": {
+                "fullName": "Muhammed Raheem",
+                "addressLine1": "puliyamkodath (h)",
+                "city": "edappal",
+                "state": "Kerala",
+                "pincode": "6711",
+                "countryCode": "",
+                "phone": "917025939094"
+            },
+            "pickupDetails": {
+                "pickupDate": "",
+                "pickupTime": "",
+                "pickupLocation": {
+                    "dispatchPointId": "6a1c18be59164b8df9d00e40",
+                    "name": "IndiVerse",
+                    "address": "13 Prior Cct, West Kempsey NSW 2440",
+                    "pincode": "2440",
+                    "countryCode": "+61",
+                    "phone": "413244912",
+                    "operatingHours": "9AM-6PM",
+                    "contactPerson": ""
+                }
+            },
+            "notes": "Payment: online; Pickup:  ",
+            "paymentMilestones": [
+                {
+                    "label": "Website Order",
+                    "amount": 66.76,
+                    "dueDate": "2026-06-17",
+                    "status": "Pending",
+                    "paymentMode": "Online",
+                    "paymentType": "Online",
+                    "whatsappNotification": {
+                        "pending": false,
+                        "paid": false,
+                        "overdue": false
+                    }
+                }
+            ],
+            "shippingDetails": [
+                {
+                    "fulfillmentMode": "store-pickup",
+                    "shippingStatus": "Pending",
+                    "shippingMethod": "Store Pickup",
+                    "dispatchPoint": {
+                        "dispatchPointId": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "contactPerson": ""
+                    },
+                    "dispatchPoints": [
+                        "6a1c18be59164b8df9d00e40"
+                    ],
+                    "pickupLocation": {
+                        "dispatchPointId": "6a1c18be59164b8df9d00e40",
+                        "name": "IndiVerse",
+                        "address": "13 Prior Cct, West Kempsey NSW 2440",
+                        "pincode": "2440",
+                        "countryCode": "+61",
+                        "phone": "413244912",
+                        "operatingHours": "9AM-6PM",
+                        "contactPerson": ""
+                    },
+                    "pickupDate": "",
+                    "pickupTime": "",
+                    "billToAddress": {
+                        "fullName": "Muhammed Raheem",
+                        "addressLine1": "puliyamkodath (h)",
+                        "city": "edappal",
+                        "state": "Kerala",
+                        "pincode": "6711",
+                        "countryCode": "",
+                        "phone": "917025939094"
+                    },
+                    "subtotal": 69.64,
+                    "itemDiscount": 0,
+                    "totalDiscount": 2.88,
+                    "totalGst": 0,
+                    "promotionDiscount": 2.88,
+                    "promotion": {
+                        "valid": true,
+                        "promotionId": "6a1e5f81badc514d939e7d78",
+                        "code": "INDIVERSE5",
+                        "type": "coupon",
+                        "discountType": "percent",
+                        "value": 5,
+                        "discountAmount": 2.88,
+                        "maxDiscountAmount": null,
+                        "minOrderAmount": 49,
+                        "applicationScope": "item",
+                        "itemOfferPolicy": "skip_discounted_items",
+                        "allowWithBogo": false,
+                        "customerOrderPosition": {
+                            "enabled": false,
+                            "orderNumber": null
+                        },
+                        "targetCatalogues": {
+                            "enabled": false,
+                            "catalogIds": []
+                        },
+                        "eligibleAmount": 57.66,
+                        "excludedItemCount": 2,
+                        "itemDiscounts": [
+                            {
+                                "lineId": "6a2169626fa632d550e98da9:default",
+                                "itemId": "6a2169626fa632d550e98da9",
+                                "groupId": "",
+                                "catalogId": "6a104234773dbbe2bd8595d3",
+                                "key": "6a2169626fa632d550e98da9:default|6a2169626fa632d550e98da9||6a104234773dbbe2bd8595d3",
+                                "discountAmount": 0.18
+                            },
+                            {
+                                "lineId": "6a216a316fa632d550e99e7f:default",
+                                "itemId": "6a216a316fa632d550e99e7f",
+                                "groupId": "",
+                                "catalogId": "6a103e2a773dbbe2bd858fec",
+                                "key": "6a216a316fa632d550e99e7f:default|6a216a316fa632d550e99e7f||6a103e2a773dbbe2bd858fec",
+                                "discountAmount": 0.3
+                            },
+                            {
+                                "lineId": "6a2169de6fa632d550e99533:default",
+                                "itemId": "6a2169de6fa632d550e99533",
+                                "groupId": "",
+                                "catalogId": "6a103e98773dbbe2bd85911d",
+                                "key": "6a2169de6fa632d550e99533:default|6a2169de6fa632d550e99533||6a103e98773dbbe2bd85911d",
+                                "discountAmount": 1.57
+                            },
+                            {
+                                "lineId": "6a2169de6fa632d550e9952f:default",
+                                "itemId": "6a2169de6fa632d550e9952f",
+                                "groupId": "",
+                                "catalogId": "6a103e98773dbbe2bd85911d",
+                                "key": "6a2169de6fa632d550e9952f:default|6a2169de6fa632d550e9952f||6a103e98773dbbe2bd85911d",
+                                "discountAmount": 0.83
+                            }
+                        ],
+                        "appliedAt": "2026-06-17T08:46:28.299Z"
+                    },
+                    "shippingCost": 0,
+                    "total": 66.76,
+                    "isShippingAvailable": false,
+                    "display": {
+                        "subtotal": 69.64,
+                        "finalBeforeShipping": 66.76,
+                        "savings": 2.88,
+                        "couponDiscount": 2.88,
+                        "shipping": 0,
+                        "total": 66.76
+                    }
+                }
+            ]
+        }
+    ],
+    "deliveryAddress": {
+        "fullName": "Muhammed Raheem",
+        "addressLine1": "puliyamkodath (h)",
+        "city": "edappal",
+        "state": "Kerala",
+        "pincode": "6711",
+        "countryCode": "",
+        "phone": "917025939094"
+    },
+    "totalAmount": 66.76,
+    "promotionCode": "INDIVERSE5",
+    "returnUrl": "http://localhost:3000/checkout"
+}
+
+
+Error in initChatWidgetOrderPaymentSession: Error: BOGO offer BTGO-001 allows 1 free item(s), but 3 was provided.
+    at validateAndNormalizeBogoOrderItems (file:///C:/Users/Grandcafe/Desktop/grandcafe%20github%20projects/project-colaber/colaber-backend/services/businessWebsite/promotions/bogoOrderValidationService.js:406:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveDbBackedOrderDataAndAmount (file:///C:/Users/Grandcafe/Desktop/grandcafe%20github%20projects/project-colaber/colaber-backend/controllers/userController/businessWebsite/chatWidget/payment/beforeOrderCreatePayment/initChatWidgetOrderPaymentSession.js:170:5)
+    at async initChatWidgetOrderCreateWithPaymentSession (file:///C:/Users/Grandcafe/Desktop/grandcafe%20github%20projects/project-colaber/colaber-backend/controllers/userController/businessWebsite/chatWidget/payment/beforeOrderCreatePayment/initChatWidgetOrderPaymentSession.js:343:27)
