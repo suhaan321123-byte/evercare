@@ -36,8 +36,6 @@ import { useCustomerAuth } from "@/context/CustomerAuthContext";
 import { useNavigate } from "react-router-dom";
 import ProductSearchBox from "./ProductSearchBox";
 import ImagePlaceholder from "./ImagePlaceholder";
-import allCataloguesImage from "@/assets/indian_grocery_items_under_1mb.jpg";
-import offersImage from "@/assets/indiverse offers.png";
 import {
   getOrderQuantityBounds,
   money,
@@ -123,7 +121,6 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
     medicineCatalogue?.slug ||
     medicineCatalogue?.name ||
     "";
-  const cataloguesLoading = false;
   const medicineSectionProducts = useMemo(
     () =>
       sortOutOfStockLast(homeData.medicineSectionProducts ?? []).slice(0, 6),
@@ -146,16 +143,38 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
     () => sortOutOfStockLast(homeData.frozenSectionProducts ?? []).slice(0, 6),
     [homeData.frozenSectionProducts],
   );
-  const mobileCataloguePreview = useMemo(
-    () => catalogues.slice(0, 9),
-    [catalogues],
-  );
-  const allCataloguesImageSrc =
-    typeof allCataloguesImage === "string"
-      ? allCataloguesImage
-      : allCataloguesImage.src;
-  const offersImageSrc =
-    typeof offersImage === "string" ? offersImage : offersImage.src;
+  const mobileCategories = useMemo(() => {
+    const seenCategoryIds = new Set<string>();
+
+    return catalogues.flatMap((catalogue) =>
+      catalogue.categories
+        .filter((category) => {
+          if (seenCategoryIds.has(category._id)) return false;
+          seenCategoryIds.add(category._id);
+          return true;
+        })
+        .map((category) => ({ category, catalogue })),
+    );
+  }, [catalogues]);
+  const mobileCategoryPreview = mobileCategories.slice(0, 7);
+  const medicineCategories = medicineCatalogue
+    ? medicineCatalogue.categories.map((category) => ({
+        category,
+        catalogue: medicineCatalogue,
+      }))
+    : [];
+
+  const getCategoryListingPath = (
+    catalogue: Catalogue,
+    categoryId: string,
+  ) => {
+    const params = new URLSearchParams({
+      category: catalogue.route || catalogue.slug || catalogue.name,
+      itemCategory: categoryId,
+    });
+
+    return `/products?${params.toString()}`;
+  };
 
   const handleQuantityChange = (productId: string, newQty: number) => {
     const item = items.find((i) => i.id === productId);
@@ -176,9 +195,9 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col pb-16">
+    <div className="min-h-screen overflow-x-clip bg-background flex flex-col pb-16">
       {/* Sticky header */}
-      <header className="sticky top-0 z-50 bg-background border-b border-border shadow-soft">
+      <header className="sticky top-0 z-50 w-full shrink-0 bg-background border-b border-border shadow-soft">
         <div className="flex items-center justify-between px-4 py-2">
           {screen === "offers" ? (
             <>
@@ -247,6 +266,8 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
 
       {screen === "home" ? (
         <>
+          <BrandShowcase brands={homeData.featuredBrands} />
+
           {/* Hero */}
           <HeroSlider
             initialDesktopSlides={homeData.desktopBanners}
@@ -255,102 +276,51 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
 
           {/* Products in 2 columns */}
           <main className="space-y-3 px-4 pt-0 pb-4">
-            {(cataloguesLoading || mobileCataloguePreview.length > 0) && (
+            {mobileCategoryPreview.length > 0 && (
               <section className="-mx-4 -mt-2 bg-slate-50/80 px-4 py-4">
                 <div className="grid grid-cols-4 gap-3">
-                  {cataloguesLoading &&
-                    Array.from({ length: 8 }).map((_, index) => (
-                      <div
-                        key={`catalogue-preview-skeleton-${index}`}
-                        className="flex flex-col items-center gap-2"
-                      >
-                        <div className="h-14 w-14 shimmer rounded-full" />
-                        <div className="h-3 w-12 shimmer rounded-full" />
-                      </div>
-                    ))}
-                  {!cataloguesLoading && (
+                  {mobileCategoryPreview.map(({ category, catalogue }) => (
                     <button
+                      key={category._id}
                       type="button"
-                      onClick={() => navigate("/products")}
+                      onClick={() =>
+                        navigate(
+                          getCategoryListingPath(catalogue, category._id),
+                        )
+                      }
                       className="flex min-w-0 flex-col items-center gap-2"
                     >
-                      <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-muted shadow-soft">
-                        <img
-                          src={allCataloguesImageSrc}
-                          alt="All catalogues"
-                          className="h-full w-full object-cover"
-                        />
+                      <span className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-muted shadow-soft">
+                        {category.image ? (
+                          <img
+                            src={category.image}
+                            alt={category.name}
+                            className="h-full w-full object-cover"
+                          />
+                        ) : (
+                          <Package className="h-6 w-6 text-primary" />
+                        )}
                       </span>
                       <span className="line-clamp-2 min-h-[2rem] text-center text-[11px] font-semibold leading-tight text-foreground">
-                        All
+                        {category.name}
                       </span>
                     </button>
-                  )}
-                  {!cataloguesLoading && (
-                    <button
-                      type="button"
-                      onClick={() => navigate("/offers")}
-                      className="flex min-w-0 flex-col items-center gap-2"
-                    >
-                      <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-muted shadow-soft">
-                        <img
-                          src={offersImageSrc}
-                          alt="Offers"
-                          className="h-full w-full object-cover"
-                        />
-                      </span>
-                      <span className="line-clamp-2 min-h-[2rem] text-center text-[11px] font-semibold leading-tight text-foreground">
-                        Offers
-                      </span>
-                    </button>
-                  )}
-                  {!cataloguesLoading &&
-                    mobileCataloguePreview.map((catalogue) => {
-                      return (
-                        <button
-                          key={catalogue._id}
-                          type="button"
-                          onClick={() =>
-                            navigate(getCatalogueListingPath(catalogue))
-                          }
-                          className="flex min-w-0 flex-col items-center gap-2"
-                        >
-                          <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-muted shadow-soft">
-                            {catalogue.image ? (
-                              <img
-                                src={catalogue.image}
-                                alt={catalogue.name}
-                                className="h-full w-full object-cover"
-                              />
-                            ) : (
-                              <Package className="h-6 w-6 text-primary" />
-                            )}
-                          </span>
-                          <span className="line-clamp-2 min-h-[2rem] text-center text-[11px] font-semibold leading-tight text-foreground">
-                            {catalogue.name}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  {!cataloguesLoading && (
-                    <button
-                      type="button"
-                      onClick={() => setCategoriesOpen(true)}
-                      className="flex min-w-0 flex-col items-center gap-2"
-                    >
-                      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-soft">
-                        <LayoutGrid className="h-6 w-6" />
-                      </span>
-                      <span className="line-clamp-2 min-h-[2rem] text-center text-[11px] font-semibold leading-tight text-foreground">
-                        View More
-                      </span>
-                    </button>
-                  )}
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setCategoriesOpen(true)}
+                    className="flex min-w-0 flex-col items-center gap-2"
+                  >
+                    <span className="flex aspect-square w-full items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-soft">
+                      <LayoutGrid className="h-6 w-6" />
+                    </span>
+                    <span className="line-clamp-2 min-h-[2rem] text-center text-[11px] font-semibold leading-tight text-foreground">
+                      More
+                    </span>
+                  </button>
                 </div>
               </section>
             )}
-
-            <BrandShowcase brands={homeData.featuredBrands} />
 
             {[
               {
@@ -399,12 +369,12 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                       View All
                     </button>
                   </div>
-                  <div className="mobile-product-scroller -mx-4 flex gap-3 overflow-x-auto overscroll-x-contain px-4 pb-3">
+                  <div className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-smooth pb-3 [-webkit-overflow-scrolling:touch]">
                     {s.loading &&
                       Array.from({ length: 6 }).map((_, index) => (
                         <div
                           key={`${s.title}-skeleton-${index}`}
-                          className="w-[44vw] max-w-[180px] shrink-0"
+                          className="w-[44vw] max-w-[180px] shrink-0 snap-start"
                         >
                           <ProductCardSkeleton />
                         </div>
@@ -413,7 +383,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                       s.items.map((p) => (
                         <div
                           key={p.id}
-                          className="w-[44vw] max-w-[180px] shrink-0"
+                          className="w-[44vw] max-w-[180px] shrink-0 snap-start"
                         >
                           <ProductCard product={p} />
                         </div>
@@ -596,21 +566,23 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
             </SheetTitle>
           </SheetHeader>
           <div className="grid grid-cols-2 gap-4 overflow-y-auto px-4 pb-6">
-            {catalogues.map((catalogue) => {
+            {medicineCategories.map(({ category, catalogue }) => {
               return (
                 <button
-                  key={catalogue._id}
+                  key={category._id}
                   onClick={() => {
-                    navigate(getCatalogueListingPath(catalogue));
+                    navigate(
+                      getCategoryListingPath(catalogue, category._id),
+                    );
                     setCategoriesOpen(false);
                   }}
                   className="flex flex-col items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
                 >
                   <div className="w-16 h-16 rounded-full overflow-hidden bg-white shadow-sm">
-                    {catalogue.image ? (
+                    {category.image ? (
                       <img
-                        src={catalogue.image}
-                        alt={catalogue.name}
+                        src={category.image}
+                        alt={category.name}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -621,7 +593,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                   </div>
                   <div className="text-center">
                     <h3 className="text-sm font-semibold text-foreground line-clamp-2">
-                      {catalogue.name}
+                      {category.name}
                     </h3>
                   </div>
                 </button>
