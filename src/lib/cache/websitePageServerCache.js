@@ -8,7 +8,7 @@ import {
 const CACHE_REVALIDATE_SECONDS = Number(
   process.env.WEBSITE_DATA_REVALIDATE_SECONDS || 300
 );
-const currentDomain = "evercare.app.colaber.in";
+const currentDomain = "evercare-two.vercel.app";
 
 const normalizeDomain = (domain = currentDomain) => {
   const value = String(domain || "").trim().toLowerCase();

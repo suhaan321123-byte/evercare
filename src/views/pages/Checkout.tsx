@@ -99,7 +99,7 @@ function extractMongoObjectId(value: unknown) {
 const LAST_ORDER_STORAGE_KEY = "ecom:last_order:v1";
 const STRIPE_PENDING_ORDER_STORAGE_KEY = "ecom:pending_stripe_checkout:v1";
 const CHECKOUT_DRAFT_STORAGE_KEY = "ecom:checkout_draft:v1";
-const TEMPLATE_WEBSITE_SUBDOMAIN = "evercare.app.colaber.in";
+const TEMPLATE_WEBSITE_SUBDOMAIN = "evercare-two.vercel.app";
 // window.location.hostname || "template-e-commerce-7-5-26.vercel.app";
 const SPECIAL_DELIVERY_PINCODE_RULES = [
   {

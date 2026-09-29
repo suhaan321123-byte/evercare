@@ -2,7 +2,7 @@ export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-V48NPN8LH2";
 
 export const GA_ALLOWED_HOSTS = (
-  process.env.NEXT_PUBLIC_GA_ALLOWED_HOSTS || "evercare.app.colaber.in"
+  process.env.NEXT_PUBLIC_GA_ALLOWED_HOSTS || "evercare-two.vercel.app"
 )
   .split(",")
   .map((host) => host.trim().toLowerCase())

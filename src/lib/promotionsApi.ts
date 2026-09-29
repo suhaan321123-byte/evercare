@@ -1,6 +1,6 @@
 import { apiClient } from "@/lib/apiClient";
 
-const TEMPLATE_WEBSITE_SUBDOMAIN = "evercare.app.colaber.in";
+const TEMPLATE_WEBSITE_SUBDOMAIN = "evercare-two.vercel.app";
 
 export const getActiveBogoPromotions = async () =>
   apiClient.get<{

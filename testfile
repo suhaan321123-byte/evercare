@@ -1,7 +1,7 @@
 business_website/chat_widget/init_payment_with_order_session
 {
     "customerId": "6a1450f34491a0b194b3100f",
-    "subdomain": "evercare.app.colaber.in",
+    "subdomain": "evercare-two.vercel.app",
     "orderData": [
         {
             "mode": "Standard Order",

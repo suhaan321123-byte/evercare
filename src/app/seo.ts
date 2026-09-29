@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const SITE_NAME = "EvercareMed";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://evercare.app.colaber.in";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://evercare-two.vercel.app";
 
 export const DEFAULT_TITLE = "EvercareMed | Ayurvedic Medicines & Wellness Products";
 export const DEFAULT_DESCRIPTION =

@@ -381,7 +381,7 @@ Typical shape:
 
 ```json
 {
-  "subdomain": "evercare.app.colaber.in",
+  "subdomain": "evercare-two.vercel.app",
   "phoneNumber": "0412345678",
   "countryCode": "+61",
   "name": "Customer Name",
@@ -411,7 +411,7 @@ This is the current frontend shape for online payment:
 ```json
 {
   "customerId": "customer-id",
-  "subdomain": "evercare.app.colaber.in",
+  "subdomain": "evercare-two.vercel.app",
   "orderData": [
     {
       "mode": "Standard Order",
@@ -448,7 +448,7 @@ It is similar to the `testfile` payload, but corrected so the paid BOGO row does
 ```json
 {
   "customerId": "6a1450f34491a0b194b3100f",
-  "subdomain": "evercare.app.colaber.in",
+  "subdomain": "evercare-two.vercel.app",
   "orderData": [
     {
       "mode": "Standard Order",
@@ -623,7 +623,7 @@ It is similar to the `testfile` payload, but corrected so the paid BOGO row does
     "phone": "413244912"
   },
   "promotionCode": "",
-  "returnUrl": "https://evercare.app.colaber.in/checkout"
+  "returnUrl": "https://evercare-two.vercel.app/checkout"
 }
 ```
 

@@ -92,11 +92,11 @@ const Footer = (_props: FooterProps) => {
                 <span>8951982743</span>
               </a>
               <a
-                href="https://evercare.app.colaber.in"
+                href="https://evercare-two.vercel.app"
                 className="flex items-center gap-2 transition-smooth hover:text-primary"
               >
                 <Globe className="h-4 w-4 shrink-0 text-primary" />
-                <span>evercare.app.colaber.in</span>
+                <span>evercare-two.vercel.app</span>
               </a>
             </div>
           </div>

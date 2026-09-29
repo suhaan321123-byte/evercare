@@ -28,7 +28,7 @@ function getAxiosErrorMessage(err: AxiosError<ApiErrorPayload>) {
     "Request failed"
   );
 }
-const currentDomain = "https://evercare.app.colaber.in";
+const currentDomain = "https://evercare-two.vercel.app";
 
 function isAbsoluteUrl(url: string) {
   return /^https?:\/\//i.test(url);

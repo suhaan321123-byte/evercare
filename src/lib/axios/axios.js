@@ -14,7 +14,7 @@ const userAxios = axios.create({
   },
 });
 
-let currentDomain = "evercare.app.colaber.in";
+let currentDomain = "evercare-two.vercel.app";
 export const setCurrentDomainInAxios = (domain = "") => {
   if (domain !== "" && domain !== currentDomain) {
     currentDomain = domain;

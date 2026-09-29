@@ -49,7 +49,7 @@ const CATALOGUE_PRODUCT_ITEMS_ENDPOINT =
   "/business_website/catalogue/product/get_catalogue_product_items_for_public";
 const OFFER_PRODUCTS_ENDPOINT =
   "/business_website/catalogue/product/get_offer_products_for_public";
-const WEBSITE_SUBDOMAIN = "evercare.app.colaber.in";
+const WEBSITE_SUBDOMAIN = "evercare-two.vercel.app";
 const PRODUCT_BRANDS_ENDPOINT =
   "/business_website/catalogue/product/get_catalogue_product_brands_for_public";
 const FALLBACK_PRODUCT_IMAGE =

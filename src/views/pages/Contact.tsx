@@ -29,8 +29,8 @@ const contactItems = [
   {
     icon: Globe,
     label: "Website",
-    value: "evercare.app.colaber.in",
-    href: "https://evercare.app.colaber.in",
+    value: "evercare-two.vercel.app",
+    href: "https://evercare-two.vercel.app",
   },
 ];
 
