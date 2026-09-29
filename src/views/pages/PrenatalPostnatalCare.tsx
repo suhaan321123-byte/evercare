@@ -9,6 +9,7 @@ import {
   Heart,
   HeartHandshake,
   Leaf,
+  Share2,
   ShieldCheck,
   Sparkles,
   Upload,
@@ -20,6 +21,7 @@ import MegaMenu from "@/components/MegaMenu";
 import CarePackages from "@/components/CarePackages";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { toast } from "@/components/ui/sonner";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const prenatalSupport = [
@@ -174,8 +176,32 @@ const PrenatalPostnatalCare = () => {
     document.getElementById("questionnaire-status")?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
+  const handleShare = async () => {
+    const shareData = {
+      title: "Prenatal & Postnatal Care | Evercare Med Group",
+      text: "Explore personalised Ayurvedic prenatal and postnatal care from Evercare Med Group.",
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      toast.success("Page link copied");
+    } catch {
+      toast.error("Unable to share this page");
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#fffdf9]">
+    <div className="min-h-screen bg-[#fffdf9] pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
       {isMobile ? (
         <header className="sticky top-0 z-50 border-b border-[#eadfd7] bg-[#fffdf9]/95 backdrop-blur">
           <div className="flex items-center gap-3 px-4 py-3">
@@ -184,10 +210,21 @@ const PrenatalPostnatalCare = () => {
                 <ArrowLeft className="h-4 w-4" />
               </Link>
             </Button>
-            <div>
+            <div className="min-w-0 flex-1">
               <p className="text-[10px] font-bold uppercase tracking-wider text-[#a34f5e]">Evercare Med Group</p>
-              <p className="text-sm font-bold leading-none text-[#293327]">Mother & Baby Care</p>
+              <p className="truncate text-sm font-bold leading-none text-[#293327]">Mother & Baby Care</p>
             </div>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={handleShare}
+              className="h-10 w-10 shrink-0 rounded-full"
+              aria-label="Share this page"
+              title="Share this page"
+            >
+              <Share2 className="h-5 w-5" />
+            </Button>
           </div>
         </header>
       ) : (
@@ -211,7 +248,7 @@ const PrenatalPostnatalCare = () => {
 
             <div className="relative z-10 -mt-6 px-5 pb-7 sm:-mt-10 sm:px-9 sm:pb-10 lg:ml-auto lg:mr-[max(2rem,calc((100vw-1400px)/2))] lg:mt-0 lg:flex lg:min-h-[620px] lg:w-[min(52%,720px)] lg:items-center lg:px-12 lg:py-12 xl:px-16">
               <div className="w-full rounded-[1.5rem] border border-white/80 bg-[#fffaf6]/95 p-6 shadow-[0_18px_55px_rgba(91,61,47,0.13)] backdrop-blur-md sm:p-9 lg:bg-[#fffaf6]/88 lg:p-10">
-                <h1 className="max-w-xl text-[2.6rem] font-black leading-[0.98] tracking-[-0.045em] text-[#293327] sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
+                <h1 className="max-w-xl text-[2.2rem] font-black leading-[0.98] tracking-[-0.045em] text-[#293327] sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
                   Care that grows <span className="text-[#a34f5e]">with you.</span>
                 </h1>
                 <p className="mt-5 max-w-lg text-base font-medium leading-7 text-[#5f665a] sm:text-lg sm:leading-8">
@@ -222,7 +259,7 @@ const PrenatalPostnatalCare = () => {
                   <button
                     type="button"
                     onClick={() => setQuestionnaireOpen(true)}
-                    className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#8f4653] px-6 py-3 text-sm font-extrabold text-white shadow-[0_10px_25px_rgba(143,70,83,0.24)] transition hover:-translate-y-0.5 hover:bg-[#773945] focus:outline-none focus:ring-2 focus:ring-[#8f4653] focus:ring-offset-2"
+                    className="hidden min-h-12 items-center justify-center gap-3 rounded-full bg-[#8f4653] px-6 py-3 text-sm font-extrabold text-white shadow-[0_10px_25px_rgba(143,70,83,0.24)] transition hover:-translate-y-0.5 hover:bg-[#773945] focus:outline-none focus:ring-2 focus:ring-[#8f4653] focus:ring-offset-2 md:inline-flex"
                   >
                     Start your care questionnaire <ArrowDown className="h-4 w-4" />
                   </button>
@@ -487,6 +524,32 @@ const PrenatalPostnatalCare = () => {
       </main>
 
       <Footer />
+
+      {isMobile ? (
+        <nav
+          aria-label="Care actions"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-[#eadfd7] bg-[#fffdf9]/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-10px_30px_rgba(79,54,42,0.12)] backdrop-blur"
+        >
+          <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => setQuestionnaireOpen(true)}
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#8f4653] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#773945] focus:outline-none focus:ring-2 focus:ring-[#8f4653] focus:ring-offset-2"
+            >
+              Q&amp;A
+            </button>
+            <a
+              href="https://wa.me/918951982743"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#8f4653] bg-white px-5 py-2.5 text-sm font-extrabold text-[#8f4653] transition hover:bg-[#fff3f1] focus:outline-none focus:ring-2 focus:ring-[#8f4653] focus:ring-offset-2"
+              aria-label="Contact Evercare Med on WhatsApp"
+            >
+              Contact
+            </a>
+          </div>
+        </nav>
+      ) : null}
     </div>
   );
 };
