@@ -4,6 +4,7 @@ import {
   Home,
   LayoutGrid,
   ShoppingCart,
+  HeartHandshake,
   Tag,
   User,
   X,
@@ -95,6 +96,7 @@ const ProductCardSkeleton = () => (
 const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const [screen, setScreen] = useState<MobileScreen>("home");
@@ -520,7 +522,11 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
               badge: count,
               action: () => setCartOpen(true),
             },
-            { icon: Tag, label: "Offers", action: () => navigate("/offers") },
+            {
+              icon: HeartHandshake,
+              label: "Services",
+              action: () => setServicesOpen(true),
+            },
             {
               icon: User,
               label: "Account",
@@ -534,7 +540,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                 onClick={item.action}
                 className={`flex flex-col items-center justify-center gap-0.5 py-2 transition-smooth ${
                   (item.label === "Home" && screen === "home") ||
-                  (item.label === "Offers" && screen === "offers")
+                  (item.label === "Services" && servicesOpen)
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
                 }`}
@@ -599,6 +605,64 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                 </button>
               );
             })}
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      {/* Services Modal */}
+      <Sheet open={servicesOpen} onOpenChange={setServicesOpen}>
+        <SheetContent side="bottom" className="rounded-t-2xl p-0">
+          <SheetHeader className="border-b border-border px-4 pb-4 pt-6">
+            <SheetTitle className="text-center text-xl font-bold">
+              Our Services
+            </SheetTitle>
+          </SheetHeader>
+          <div className="space-y-3 px-4 pb-8 pt-4">
+            {[
+              {
+                title: "Prenatal & Postnatal Care",
+                path: "/prenatal-postnatal-care",
+                image: "/brands/POSTNATAL_CARE.jpg",
+                tags: ["Pregnancy wellness", "Postnatal recovery"],
+              },
+              {
+                title: "Ayurvedic Tourism",
+                path: "/ayurvedic-tourism",
+                image: "/brands/ayurvedic_tourisum.png.jpg",
+                tags: ["Wellness retreats", "Kerala experiences"],
+              },
+            ].map((service) => (
+              <button
+                key={service.path}
+                type="button"
+                onClick={() => {
+                  setServicesOpen(false);
+                  navigate(service.path);
+                }}
+                className="flex w-full items-center gap-4 rounded-xl border border-border bg-card p-3 text-left shadow-sm transition-colors hover:bg-muted/50"
+              >
+                <img
+                  src={service.image}
+                  alt=""
+                  className="h-20 w-24 shrink-0 rounded-lg object-cover"
+                />
+                <span className="min-w-0 flex-1">
+                  <span className="block text-base font-semibold text-foreground">
+                    {service.title}
+                  </span>
+                  <span className="mt-2 flex flex-wrap gap-1.5">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold leading-none text-primary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+              </button>
+            ))}
           </div>
         </SheetContent>
       </Sheet>
