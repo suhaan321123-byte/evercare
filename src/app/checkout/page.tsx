@@ -4,7 +4,7 @@ import { CheckoutClient } from "./CheckoutClient";
 export const metadata = buildPageMetadata({
   title: "Checkout",
   description:
-    "Securely complete your EvercareMed order with billing, delivery, and store pickup options.",
+    "Securely complete your EvercareMed order with billing and home delivery options.",
   path: "/checkout",
   noIndex: true,
 });

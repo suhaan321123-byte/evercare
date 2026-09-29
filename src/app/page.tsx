@@ -38,6 +38,19 @@ const MOBILE_USER_AGENT_REGEX =
 const normalizeCatalogueName = (value: string) =>
   value.toLowerCase().replace(/&/g, "and").replace(/\s+/g, " ").trim();
 
+const extractProductBrandNames = (value: unknown): string[] => {
+  if (Array.isArray(value)) {
+    return value.flatMap(extractProductBrandNames);
+  }
+
+  if (typeof value !== "string") return [];
+
+  return value
+    .split(",")
+    .map((brand) => brand.trim())
+    .filter(Boolean);
+};
+
 const findCatalogueByName = (
   catalogues: HomePageServerData["catalogues"],
   catalogueName: string,
@@ -55,7 +68,7 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
   const [
     catalogues,
     catalogueGroups,
-    featuredBrands,
+    allBrands,
     desktopBanners,
     mobileBanners,
     scrollingItems,
@@ -75,6 +88,12 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
       `${catalogue.name} ${catalogue.route} ${catalogue.slug}`,
     ),
   );
+
+  // The homepage showcase is specifically for medicine brands. Keep the
+  // unfiltered list for the navigation's global brand menu.
+  const featuredBrands = medicineCatalogue?._id
+    ? await getProductBrandsWithImages(medicineCatalogue._id)
+    : [];
 
   const [
     newestPage,
@@ -132,12 +151,20 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
         }
       : catalogue,
   );
+  const medicineBrandNames = new Set(
+    medicinePage.products
+      .flatMap((product) => extractProductBrandNames(product.brand))
+      .map((brand) => brand.toLowerCase()),
+  );
+  const medicineFeaturedBrands = featuredBrands.filter((brand) =>
+    medicineBrandNames.has(brand.name.toLowerCase()),
+  );
 
   return {
     catalogues: cataloguesWithCategoryImages,
     catalogueGroups,
-    brands: featuredBrands.map((brand) => brand.name),
-    featuredBrands,
+    brands: allBrands.map((brand) => brand.name),
+    featuredBrands: medicineFeaturedBrands,
     desktopBanners,
     mobileBanners,
     scrollingItems,
@@ -174,6 +201,5 @@ export default async function HomePage() {
     console.error("Failed to fetch home page data", error);
   }
   
-  console.log(homeData?.catalogues[0]?.categories[0], "catalogues")
   return <HomeClient initialIsMobile={initialIsMobile} homeData={homeData} />;
 }

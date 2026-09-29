@@ -752,12 +752,9 @@ const Checkout = () => {
       const raw = window.sessionStorage.getItem(CHECKOUT_DRAFT_STORAGE_KEY);
       const draft = raw ? (JSON.parse(raw) as CheckoutDraft) : null;
       if (draft && typeof draft === "object") {
-        if (
-          draft.deliveryType === "delivery" ||
-          draft.deliveryType === "pickup"
-        ) {
-          setDeliveryType(draft.deliveryType);
-        }
+        // Store pickup is no longer offered at checkout. Older saved drafts
+        // may still contain "pickup", so always restore delivery instead.
+        setDeliveryType("delivery");
         setSelectedBillingAddress(draft.selectedBillingAddress || "new");
         setSelectedShippingAddress(draft.selectedShippingAddress || "new");
         setUseBillingAsShipping(draft.useBillingAsShipping ?? true);
@@ -807,9 +804,7 @@ const Checkout = () => {
   const shippingSupported = items.every(
     (item) => item.shippingAvailable === true,
   );
-  const pickupSupported = items.every(
-    (item) => item.storePickupAvailable === true,
-  );
+  const pickupSupported = false;
   const hasFulfillmentOptions = shippingSupported || pickupSupported;
   const billingOnly = !hasFulfillmentOptions;
   const [shippingCost, setShippingCost] = useState(0);
@@ -1509,16 +1504,6 @@ const Checkout = () => {
       payment_method: paymentMethod,
     });
     placeOrder(paymentMethod);
-  };
-
-  const handleDeliveryTypeChange = (value: string) => {
-    const nextDeliveryType = value as DeliveryType;
-    setDeliveryType(nextDeliveryType);
-    trackCheckoutProgress({
-      ...checkoutAnalyticsPayload,
-      step: "delivery_type_selected",
-      delivery_type: nextDeliveryType,
-    });
   };
 
   const canProceedToPay = () => {
@@ -3375,69 +3360,6 @@ const Checkout = () => {
         <main className="flex-1 px-4 py-5 pb-28">
           {mobileStep === 1 ? (
             <div className="space-y-4">
-              {hasFulfillmentOptions ? (
-                <section className="space-y-3">
-                  <div className="flex items-center gap-2 text-lg font-semibold">
-                    <Truck className="h-5 w-5" />
-                    Delivery Options
-                  </div>
-                  <RadioGroup
-                    value={deliveryType}
-                    onValueChange={handleDeliveryTypeChange}
-                    className="grid grid-cols-2 gap-3"
-                  >
-                    <div className="flex h-full items-start gap-2 rounded-lg border border-border p-3">
-                      <RadioGroupItem
-                        value="delivery"
-                        id="delivery-mobile"
-                        disabled={!shippingSupported}
-                        className="mt-1"
-                      />
-                      <Label
-                        htmlFor="delivery-mobile"
-                        className="flex min-w-0 cursor-pointer items-start gap-2"
-                      >
-                        <Truck className="mt-0.5 h-4 w-4 shrink-0" />
-                        <div className="min-w-0">
-                          <div className="text-sm font-medium leading-tight">
-                            Home Delivery
-                          </div>
-                          {!shippingSupported ? (
-                            <div className="mt-1 text-xs leading-snug text-muted-foreground">
-                              Not available for these items
-                            </div>
-                          ) : null}
-                        </div>
-                      </Label>
-                    </div>
-                    <div className="flex h-full items-start gap-2 rounded-lg border border-border p-3">
-                      <RadioGroupItem
-                        value="pickup"
-                        id="pickup-mobile"
-                        disabled={!pickupSupported}
-                        className="mt-1"
-                      />
-                      <Label
-                        htmlFor="pickup-mobile"
-                        className="flex min-w-0 cursor-pointer items-start gap-2"
-                      >
-                        <Store className="mt-0.5 h-4 w-4 shrink-0" />
-                        <div className="min-w-0">
-                          <div className="text-sm font-medium leading-tight">
-                            Store Pickup
-                          </div>
-                          {!pickupSupported ? (
-                            <div className="mt-1 text-xs leading-snug text-muted-foreground">
-                              Not available for these items
-                            </div>
-                          ) : null}
-                        </div>
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </section>
-              ) : null}
-
               {billingOnly ? (
                 <Card>
                   <CardHeader>
@@ -4703,66 +4625,6 @@ const Checkout = () => {
                   </div>
                 </CardContent>
               </Card>
-            ) : null}
-
-            {/* Delivery Type Selection */}
-            {hasFulfillmentOptions ? (
-              <section className="space-y-3">
-                <div className="flex items-center gap-2 text-lg font-semibold">
-                  <Truck className="h-5 w-5" />
-                  Delivery Options
-                </div>
-                <RadioGroup
-                  value={deliveryType}
-                  onValueChange={handleDeliveryTypeChange}
-                  className="grid grid-cols-2 gap-4"
-                >
-                  <div className="flex h-full items-start gap-3 rounded-lg border border-border p-4">
-                    <RadioGroupItem
-                      value="delivery"
-                      id="delivery"
-                      disabled={!shippingSupported}
-                      className="mt-1"
-                    />
-                    <Label
-                      htmlFor="delivery"
-                      className="flex min-w-0 cursor-pointer items-start gap-2"
-                    >
-                      <Truck className="mt-0.5 h-4 w-4 shrink-0" />
-                      <div className="min-w-0">
-                        <div className="font-medium">Home Delivery</div>
-                        <div className="text-sm text-muted-foreground">
-                          {shippingSupported
-                            ? "Delivered to your doorstep"
-                            : "Not available for these items"}
-                        </div>
-                      </div>
-                    </Label>
-                  </div>
-                  <div className="flex h-full items-start gap-3 rounded-lg border border-border p-4">
-                    <RadioGroupItem
-                      value="pickup"
-                      id="pickup"
-                      disabled={!pickupSupported}
-                      className="mt-1"
-                    />
-                    <Label
-                      htmlFor="pickup"
-                      className="flex min-w-0 cursor-pointer items-start gap-2"
-                    >
-                      <Store className="mt-0.5 h-4 w-4 shrink-0" />
-                      <div className="min-w-0">
-                        <div className="font-medium">Store Pickup</div>
-                        <div className="text-sm text-muted-foreground">
-                          {pickupSupported
-                            ? "Pick up from our store"
-                            : "Not available for these items"}
-                        </div>
-                      </div>
-                    </Label>
-                  </div>
-                </RadioGroup>
-              </section>
             ) : null}
 
             {billingOnly ? (
