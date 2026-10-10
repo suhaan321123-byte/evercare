@@ -24,8 +24,8 @@ const ProductSection = ({ title, subtitle, products, accent = "primary", loading
   }[accent];
 
   return (
-    <section className="site-container py-10">
-      <div className="flex items-end justify-between mb-6 gap-4">
+    <section className="site-container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div className="mb-7 flex items-end justify-between gap-4 border-b border-[#eadfd7] pb-5">
         <div>
           {subtitle && (
             <div className="flex items-center gap-2 mb-2">
@@ -33,9 +33,9 @@ const ProductSection = ({ title, subtitle, products, accent = "primary", loading
               <span className="text-xs uppercase tracking-widest font-bold text-muted-foreground">{subtitle}</span>
             </div>
           )}
-          <h2 className={cn("text-3xl font-extrabold text-foreground md:text-4xl", titleClassName)}>{title}</h2>
+          <h2 className={cn("text-3xl font-black text-[#293327] md:text-4xl", titleClassName)}>{title}</h2>
         </div>
-        <Button variant="ghost" className="hidden sm:flex group" asChild>
+        <Button variant="ghost" className="hidden rounded-full px-5 text-[#8f4653] hover:bg-[#f3e5dc] hover:text-[#773945] sm:flex group" asChild>
           <Link to={viewAllTo}>
           View All <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-smooth" />
           </Link>

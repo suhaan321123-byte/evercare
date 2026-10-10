@@ -133,7 +133,7 @@ export default async function RootLayout({
         </Script>
         {/* End Google Tag Manager */}
       </head>
-      <body className={`antialiased`}>
+      <body className="home-premium-theme antialiased">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

@@ -3,13 +3,14 @@ import Header from "@/components/Header";
 import MegaMenu from "@/components/MegaMenu";
 import HeroSlider from "@/components/HeroSlider";
 import OfferBar from "@/components/OfferBar";
+import TrustBenefits from "@/components/TrustBenefits";
 import MedicineCategories from "@/components/MedicineCategories";
 import CareHighlights from "@/components/CareHighlights";
+import ComfortMatters from "@/components/ComfortMatters";
 import ProductSection from "@/components/ProductSection";
 import Footer from "@/components/Footer";
 import MobileLayout from "@/components/MobileLayout";
 import BrandShowcase from "@/components/BrandShowcase";
-import CarePackages from "@/components/CarePackages";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { sortOutOfStockLast } from "@/data/catalog";
 import type { Catalogue } from "@/services/catalogues";
@@ -28,6 +29,7 @@ const findCatalogueByName = (catalogues: Catalogue[], catalogueName: string) => 
 
 const Index = ({ homeData }: { homeData: HomePageServerData }) => {
   const isMobile = useIsMobile();
+
   const catalogues = homeData.catalogues;
   const riceCatalogue = findCatalogueByName(catalogues, "Rice & Rice Products");
   const frozenCatalogue = findCatalogueByName(catalogues, "Frozen Items");
@@ -40,6 +42,7 @@ const Index = ({ homeData }: { homeData: HomePageServerData }) => {
   const frozenCatalogueRoute = frozenCatalogue?.route || frozenCatalogue?.slug || frozenCatalogue?.name || "";
   const medicineCatalogueRoute = medicineCatalogue?.route || medicineCatalogue?.slug || medicineCatalogue?.name || "";
   const medicineSectionProducts = sortOutOfStockLast(homeData.medicineSectionProducts).slice(0, 6);
+  const equipmentSectionProducts = sortOutOfStockLast(homeData.equipmentSectionProducts).slice(0, 6);
   const riceSectionProducts = sortOutOfStockLast(homeData.riceSectionProducts);
   const frozenSectionProducts = sortOutOfStockLast(homeData.frozenSectionProducts);
   const scrollingTexts = homeData.scrollingItems.map((item) => item.text);
@@ -47,26 +50,27 @@ const Index = ({ homeData }: { homeData: HomePageServerData }) => {
   if (isMobile) return <MobileLayout homeData={homeData} />;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       <MegaMenu
         initialCatalogues={homeData.catalogues}
         initialGroups={homeData.catalogueGroups}
         initialBrands={homeData.brands}
       />
-      <main>
+      <main className="overflow-hidden">
 
         <HeroSlider
           initialDesktopSlides={homeData.desktopBanners}
           initialMobileSlides={homeData.mobileBanners}
         />
         <OfferBar speed="slow" initialItems={scrollingTexts} />
+        <TrustBenefits />
         <MedicineCategories
           catalogues={homeData.catalogues}
-          promotionalImage="/medicine_delivery%20(1).png"
         />
-        <CareHighlights />
-        <BrandShowcase brands={homeData.featuredBrands} />
+        <CareHighlights variant="maternal" />
+        <ComfortMatters />
+        <BrandShowcase brands={homeData.featuredBrands} variant="desktop" />
         {medicineSectionProducts.length > 0 && (
           <ProductSection
             title="Medicines"
@@ -74,10 +78,20 @@ const Index = ({ homeData }: { homeData: HomePageServerData }) => {
             accent="accent"
             loading={false}
             viewAllTo={medicineCatalogueRoute ? `/products?category=${encodeURIComponent(medicineCatalogueRoute)}` : "/products"}
-            titleClassName="text-3xl font-black leading-tight text-[#293327] sm:text-4xl"
+            titleClassName="text-xl font-black leading-tight text-[#293327] sm:text-2xl md:text-2xl"
           />
         )}
-        <CarePackages />
+        {equipmentSectionProducts.length > 0 && (
+          <ProductSection
+            title="Medical Equipment"
+            products={equipmentSectionProducts}
+            accent="secondary"
+            loading={false}
+            viewAllTo="/equipment"
+            titleClassName="text-xl font-black leading-tight text-[#293327] sm:text-2xl md:text-2xl"
+          />
+        )}
+        <CareHighlights variant="home" />
         {riceSectionProducts.length > 0 && (
           <ProductSection
             title="Ayurvedic Medicines"
@@ -97,7 +111,7 @@ const Index = ({ homeData }: { homeData: HomePageServerData }) => {
           />
         )}
       </main>
-      <Footer initialCatalogues={homeData.catalogues} />
+      <Footer initialCatalogues={homeData.catalogues} premium />
     </div>
   );
 };

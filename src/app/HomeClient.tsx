@@ -17,6 +17,7 @@ export type HomePageServerData = {
   mobileBanners: BannerSlide[];
   scrollingItems: ScrollingBarItem[];
   medicineSectionProducts: Product[];
+  equipmentSectionProducts: Product[];
   newestArrivals: Product[];
   offerProducts: Product[];
   riceSectionProducts: Product[];

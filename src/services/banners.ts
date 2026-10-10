@@ -7,6 +7,7 @@ export type BannerSlide = {
   mobileImage?: string;
   desktopImage?: string;
   alt?: string;
+  url?: string;
 };
 
 type ApiBanner = {
@@ -23,12 +24,32 @@ type ApiBanner = {
   title?: unknown;
   name?: unknown;
   alt?: unknown;
+  altText?: unknown;
+  deviceType?: unknown;
   indexPosition?: unknown;
+  displayOrder?: unknown;
   sortOrder?: unknown;
   order?: unknown;
   images?: unknown;
   desktop?: unknown;
   mobile?: unknown;
+  url?: unknown;
+  link?: unknown;
+  href?: unknown;
+  path?: unknown;
+  route?: unknown;
+  buttonUrl?: unknown;
+  buttonURL?: unknown;
+  buttonLink?: unknown;
+  redirectUrl?: unknown;
+  redirectURL?: unknown;
+  targetUrl?: unknown;
+  targetURL?: unknown;
+  bannerUrl?: unknown;
+  bannerURL?: unknown;
+  button?: unknown;
+  cta?: unknown;
+  action?: unknown;
 };
 
 const ACTIVE_BANNERS_ENDPOINT =
@@ -65,6 +86,36 @@ const extractList = (payload: unknown): unknown[] => {
 const stringValue = (value: unknown): string | undefined =>
   typeof value === "string" && value.trim() ? value.trim() : undefined;
 
+const normalizeDestination = (value: unknown): string | undefined => {
+  const destination = stringValue(value);
+  if (!destination) return undefined;
+
+  if (/^https?:\/\//i.test(destination) || destination.startsWith("/") || destination.startsWith("#")) {
+    return destination;
+  }
+
+  if (/^www\./i.test(destination)) return `https://${destination}`;
+  if (/^[a-z0-9][a-z0-9/_?=&%#.-]*$/i.test(destination)) return `/${destination}`;
+
+  return undefined;
+};
+
+const destinationFromObject = (value: unknown): string | undefined => {
+  if (!value || typeof value !== "object") return undefined;
+  const item = value as Record<string, unknown>;
+
+  return (
+    normalizeDestination(item.url) ??
+    normalizeDestination(item.link) ??
+    normalizeDestination(item.href) ??
+    normalizeDestination(item.path) ??
+    normalizeDestination(item.route) ??
+    normalizeDestination(item.buttonUrl) ??
+    normalizeDestination(item.redirectUrl) ??
+    normalizeDestination(item.targetUrl)
+  );
+};
+
 const imageFromObject = (value: unknown): string | undefined => {
   if (!value || typeof value !== "object") return undefined;
 
@@ -90,8 +141,26 @@ const imageFromImages = (images: unknown): string | undefined => {
   return undefined;
 };
 
-const extractBanners = (payload: unknown): BannerSlide[] =>
-  extractList(payload)
+const extractBanners = (
+  payload: unknown,
+  requestedDeviceType: "Mobile" | "Desktop",
+): BannerSlide[] => {
+  const banners = extractList(payload);
+  const normalizedDeviceType = requestedDeviceType.toLowerCase();
+  const deviceSpecificBanners = banners.filter((item) =>
+    stringValue((item as ApiBanner).deviceType)?.toLowerCase() === normalizedDeviceType,
+  );
+  const sharedBanners = banners.filter((item) =>
+    stringValue((item as ApiBanner).deviceType)?.toLowerCase() === "all",
+  );
+  const selectedBanners =
+    deviceSpecificBanners.length > 0
+      ? deviceSpecificBanners
+      : sharedBanners.length > 0
+        ? sharedBanners
+        : banners;
+
+  return selectedBanners
     .map((item) => {
       const banner = item as ApiBanner;
       const desktopImage =
@@ -103,25 +172,51 @@ const extractBanners = (payload: unknown): BannerSlide[] =>
         mobileImage ??
         imageFromImages(banner.images) ??
         imageFromObject(banner);
-      const sortOrder = Number(banner.indexPosition ?? banner.sortOrder ?? banner.order ?? 0);
+      const sortOrder = Number(
+        banner.indexPosition ?? banner.displayOrder ?? banner.sortOrder ?? banner.order ?? 0,
+      );
+      const url =
+        normalizeDestination(banner.buttonUrl) ??
+        normalizeDestination(banner.buttonURL) ??
+        normalizeDestination(banner.buttonLink) ??
+        normalizeDestination(banner.redirectUrl) ??
+        normalizeDestination(banner.redirectURL) ??
+        normalizeDestination(banner.targetUrl) ??
+        normalizeDestination(banner.targetURL) ??
+        normalizeDestination(banner.bannerUrl) ??
+        normalizeDestination(banner.bannerURL) ??
+        normalizeDestination(banner.link) ??
+        normalizeDestination(banner.href) ??
+        normalizeDestination(banner.path) ??
+        normalizeDestination(banner.route) ??
+        normalizeDestination(banner.url) ??
+        destinationFromObject(banner.button) ??
+        destinationFromObject(banner.cta) ??
+        destinationFromObject(banner.action);
 
       return {
         image: image ?? "",
         mobileImage,
         desktopImage,
-        alt: stringValue(banner.alt) ?? stringValue(banner.title) ?? stringValue(banner.name),
+        alt:
+          stringValue(banner.alt) ??
+          stringValue(banner.altText) ??
+          stringValue(banner.title) ??
+          stringValue(banner.name),
+        url,
         sortOrder,
       };
     })
     .filter((banner) => banner.image)
     .sort((a, b) => a.sortOrder - b.sortOrder)
     .map(({ sortOrder: _sortOrder, ...banner }) => banner);
+};
 
 export const getActiveBanners = async (deviceType: "Mobile" | "Desktop"): Promise<BannerSlide[]> => {
   const payload = await apiClient.get(
     `${ACTIVE_BANNERS_ENDPOINT}&deviceType=${encodeURIComponent(deviceType)}`,
   );
-  const banners = extractBanners(payload);
+  const banners = extractBanners(payload, deviceType);
   bannerCache[deviceType] = banners;
   return banners;
 };

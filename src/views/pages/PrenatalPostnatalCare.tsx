@@ -42,23 +42,14 @@ const postnatalSupport = [
   "Supportive guidance for recovery, breastfeeding, and lactation",
 ];
 
-const emotionalSupport = [
-  {
-    title: "Prenatal counselling",
-    copy: "Guidance and emotional preparation throughout pregnancy and for the transition to motherhood.",
-  },
-  {
-    title: "Emotional wellness",
-    copy: "Support for stress management, emotional balance, self-care, and adjustment before and after childbirth.",
-  },
-  {
-    title: "Postpartum depression support",
-    copy: "Compassionate support for mood changes, anxiety, excessive stress, or sleep-related emotional concerns.",
-  },
-  {
-    title: "Family & motherhood adjustment",
-    copy: "Guidance for new responsibilities, breastfeeding challenges, lifestyle changes, and caring for a newborn.",
-  },
+const evercareSupport = [
+  "Ayurvedic oil massage and Abhyanga",
+  "Post-massage herbal bath guidance",
+  "Nourishing and easily digestible Ayurvedic meals",
+  "Personalized dietary recommendations",
+  "Lifestyle and self-care guidance",
+  "Ayurvedic herbal formulations, where appropriate",
+  "Supportive guidance for postnatal recovery and lactation",
 ];
 
 const RadioQuestion = ({
@@ -248,11 +239,12 @@ const PrenatalPostnatalCare = () => {
 
             <div className="relative z-10 -mt-6 px-5 pb-7 sm:-mt-10 sm:px-9 sm:pb-10 lg:ml-auto lg:mr-[max(2rem,calc((100vw-1400px)/2))] lg:mt-0 lg:flex lg:min-h-[620px] lg:w-[min(52%,720px)] lg:items-center lg:px-12 lg:py-12 xl:px-16">
               <div className="w-full rounded-[1.5rem] border border-white/80 bg-[#fffaf6]/95 p-6 shadow-[0_18px_55px_rgba(91,61,47,0.13)] backdrop-blur-md sm:p-9 lg:bg-[#fffaf6]/88 lg:p-10">
-                <h1 className="max-w-xl text-[2.2rem] font-black leading-[0.98] tracking-[-0.045em] text-[#293327] sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
-                  Care that grows <span className="text-[#a34f5e]">with you.</span>
+                <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#a34f5e]">Prenatal &amp; Postnatal Care in Ayurveda</p>
+                <h1 className="mt-4 max-w-xl text-[2.2rem] font-black leading-[0.98] tracking-[-0.045em] text-[#293327] sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
+                  Nurturing mother and baby <span className="text-[#a34f5e]">through every stage.</span>
                 </h1>
                 <p className="mt-5 max-w-lg text-base font-medium leading-7 text-[#5f665a] sm:text-lg sm:leading-8">
-                  Personalised prenatal and postnatal support rooted in Ayurveda—for nourishment, recovery, and emotional well-being at every stage.
+                  Personalized prenatal and postnatal support rooted in Ayurveda—for nourishment, recovery, and emotional well-being at every stage.
                 </p>
 
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -316,8 +308,6 @@ const PrenatalPostnatalCare = () => {
             </div>
           </div>
         </section>
-
-        <CarePackages onEnquire={() => setQuestionnaireOpen(true)} />
 
         <section className="bg-[#f5eee7] py-16 lg:py-24">
           <div className="site-container grid gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -387,25 +377,26 @@ const PrenatalPostnatalCare = () => {
 
         <section className="bg-[#313c31] py-16 text-white lg:py-24">
           <div className="site-container px-4 sm:px-6 lg:px-8">
-            <SectionHeading eyebrow="Emotional wellness support" title="A safe space for every feeling" inverse>
+            <SectionHeading eyebrow="Our Ayurvedic care at Evercare" title="Compassionate, individualized guidance" inverse>
               <p className="text-white/70">
-                Emotional care is an important part of maternal wellness. Our guidance supports confidence, resilience, relaxation, and adjustment throughout pregnancy and early motherhood.
+                At Evercare Med Group, our Ayurvedic care guidance is designed to support mothers through the prenatal and postnatal journey. Our Vaidyas provide personalized recommendations based on individual needs.
               </p>
             </SectionHeading>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {emotionalSupport.map((item, index) => (
-                <article key={item.title} className="rounded-2xl border border-white/10 bg-white/[0.06] p-6">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f6c9c3] text-sm font-black text-[#68343e]">{index + 1}</span>
-                  <h3 className="mt-5 text-lg font-bold">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/65">{item.copy}</p>
-                </article>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {evercareSupport.map((item) => (
+                <div key={item} className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#dce8aa]" />
+                  <p className="text-sm font-medium leading-6 text-white/80">{item}</p>
+                </div>
               ))}
             </div>
-            <p className="mt-8 max-w-4xl text-sm leading-6 text-white/60">
-              If you are experiencing persistent sadness, severe anxiety, thoughts of harming yourself or your baby, or feel unsafe, please seek urgent help from a doctor or emergency service. Ayurvedic wellness support does not replace medical or mental-health care.
-            </p>
+            <div className="mt-10 max-w-5xl rounded-2xl border border-white/10 bg-black/10 p-6 text-sm leading-7 text-white/65">
+              <strong className="text-white">Important note:</strong> Ayurvedic care should be personalized by a qualified practitioner. Prenatal and postnatal therapies, dietary recommendations, and herbal formulations should be undertaken with appropriate medical guidance, particularly during pregnancy, after childbirth, or while breastfeeding.
+            </div>
           </div>
         </section>
+
+        <CarePackages onEnquire={() => setQuestionnaireOpen(true)} />
 
         <Sheet open={questionnaireOpen} onOpenChange={setQuestionnaireOpen}>
           <SheetContent

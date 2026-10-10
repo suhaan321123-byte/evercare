@@ -118,7 +118,7 @@ const AyurvedicTourism = () => {
             </Button>
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.15em] text-[#9a6b2f]">Evercare Med Group</p>
-              <p className="text-sm font-bold leading-none">Ayurvedic Tourism</p>
+              <p className="text-sm font-bold leading-none">Medical Tourism</p>
             </div>
           </div>
         </header>

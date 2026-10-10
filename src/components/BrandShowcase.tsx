@@ -4,14 +4,15 @@ import type { ProductBrand } from "@/services/catalogues";
 
 type BrandShowcaseProps = {
   brands: ProductBrand[];
+  variant?: "mobile" | "desktop";
 };
 
 const brandStyles = [
-  "from-[#E8F6F8] to-[#CBE9EE] text-[#087A96] border-[#A9D7DF]",
-  "from-[#FFF2E9] to-[#F9D9C6] text-[#A14510] border-[#EEC2A8]",
-  "from-[#F3F8DF] to-[#DFECB0] text-[#58721B] border-[#CDDF8A]",
-  "from-[#F2EEFA] to-[#DED2F1] text-[#69499A] border-[#CDBBE6]",
-  "from-[#FFF4D9] to-[#F9DF9D] text-[#966412] border-[#EBCF83]",
+  "from-[#fffaf6] to-[#f3ddd8] text-[#8f4653] border-[#dfc5c3]",
+  "from-[#fbfdf7] to-[#e5eccf] text-[#71813d] border-[#d2dcb9]",
+  "from-[#fffdf9] to-[#f3e5dc] text-[#8d665f] border-[#e4d2c8]",
+  "from-[#f8f2ec] to-[#e8eddc] text-[#56613e] border-[#d9dfc9]",
+  "from-[#fffaf7] to-[#eadfd7] text-[#68343e] border-[#ddc9c1]",
 ];
 
 const getBrandMark = (brand: string) =>
@@ -23,25 +24,92 @@ const getBrandMark = (brand: string) =>
     .join("")
     .toUpperCase();
 
-const BrandShowcase = ({ brands }: BrandShowcaseProps) => {
+const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
   const visibleBrands = brands.slice(0, 9);
 
   if (visibleBrands.length === 0) return null;
 
+  if (variant === "desktop") {
+    return (
+      <section className="site-container px-6 py-16 lg:px-8 lg:py-20" aria-label="Featured brands">
+        <div>
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)] xl:gap-16">
+            <div>
+              <div className="grid grid-cols-3 gap-5 xl:gap-6">
+                {visibleBrands.map((brand, index) => (
+                  <Link
+                    key={brand._id}
+                    to={`/products?brand=${encodeURIComponent(brand.name)}`}
+                    className="group mx-auto flex w-full max-w-[132px] min-w-0 flex-col items-center text-center xl:max-w-[140px]"
+                    aria-label={`Shop ${brand.name}`}
+                  >
+                    <span
+                      className={`flex aspect-square w-full items-center justify-center overflow-hidden rounded-full border bg-gradient-to-br text-2xl font-black shadow-[0_12px_30px_-22px_rgba(57,44,37,.7)] transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-card ${brandStyles[index % brandStyles.length]}`}
+                    >
+                      {brand.image ? (
+                        <img
+                          src={brand.image}
+                          alt={`${brand.name} logo`}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        getBrandMark(brand.name)
+                      )}
+                    </span>
+                    <span className="mt-3 line-clamp-2 min-h-10 text-xs font-extrabold leading-5 text-[#3c4939] transition-colors group-hover:text-[#8f4653] xl:text-sm">
+                      {brand.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative isolate flex min-h-[430px] flex-col justify-center overflow-hidden rounded-[1.75rem] bg-[#314431] px-9 py-12 text-white xl:px-12">
+              <span className="pointer-events-none absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full border-[44px] border-white/[0.06]" />
+              <span className="pointer-events-none absolute -bottom-16 -left-16 -z-10 h-48 w-48 rounded-full bg-[#d8b9b5]/10" />
+              <p className="mb-4 text-xs font-black uppercase tracking-[0.2em] text-[#e8cfd0]">Trusted partners</p>
+              <h2 className="max-w-sm text-4xl font-black leading-[1.08] tracking-[-0.04em] xl:text-[2.75rem]">
+                Brands selected with care
+              </h2>
+              <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
+                Explore trusted names chosen for dependable quality, thoughtful formulations, and everyday wellness.
+              </p>
+              <Link
+                to="/products"
+                className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#314431] transition duration-300 hover:-translate-y-0.5 hover:bg-[#f7ece9]"
+              >
+                Explore all brands <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="site-container pb-2 pt-4 sm:pt-6" aria-label="Featured brands">
-      <div className="no-scrollbar -mx-1 overflow-x-auto px-1 pb-3">
-        <div className="grid min-w-[920px] grid-cols-10 gap-4">
+    <section className="site-container px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-8 lg:pt-14" aria-label="Featured brands">
+      <div className="mb-4 flex items-end justify-between gap-4 sm:mb-7">
+        <div>
+          <h2 className="text-xl font-black text-[#293327] sm:text-2xl">Brands selected with care</h2>
+        </div>
+        <Link to="/products" className="hidden items-center gap-2 text-sm font-extrabold text-[#8f4653] sm:inline-flex">
+          Explore all <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="no-scrollbar -mx-4 overflow-x-auto px-4 pb-2 sm:-mx-1 sm:px-1 sm:pb-3">
+        <div className="flex w-max items-start gap-2 sm:min-w-[1064px] sm:justify-between sm:gap-4">
           {visibleBrands.map((brand, index) => {
             return (
               <Link
                 key={brand._id}
                 to={`/products?brand=${encodeURIComponent(brand.name)}`}
-                className="group flex min-w-0 flex-col items-center gap-2 text-center"
+                className="group flex w-[84px] shrink-0 flex-col items-center gap-2 text-center sm:w-[92px]"
                 aria-label={`Shop ${brand.name}`}
               >
                 <span
-                  className={`flex aspect-square w-full max-w-[92px] items-center justify-center overflow-hidden rounded-full border-2 bg-gradient-to-br text-2xl font-black shadow-soft transition-smooth group-hover:-translate-y-1 group-hover:shadow-card ${brandStyles[index % brandStyles.length]}`}
+                  className={`flex aspect-square w-full items-center justify-center overflow-hidden rounded-full border bg-gradient-to-br text-2xl font-black shadow-soft transition-smooth group-hover:-translate-y-1 group-hover:shadow-card ${brandStyles[index % brandStyles.length]}`}
                 >
                   {brand.image ? (
                     <img
@@ -63,10 +131,10 @@ const BrandShowcase = ({ brands }: BrandShowcaseProps) => {
 
           <Link
             to="/products"
-            className="group flex min-w-0 flex-col items-center gap-2 text-center"
+            className="group flex w-[84px] shrink-0 flex-col items-center gap-2 text-center sm:w-[92px]"
             aria-label="View more brands"
           >
-            <span className="flex aspect-square w-full max-w-[92px] items-center justify-center rounded-full border-2 border-dashed border-primary/45 bg-primary/5 text-primary shadow-soft transition-smooth group-hover:-translate-y-1 group-hover:border-primary group-hover:bg-primary/10 group-hover:shadow-card">
+            <span className="flex aspect-square w-full items-center justify-center rounded-full border-2 border-dashed border-primary/45 bg-primary/5 text-primary shadow-soft transition-smooth group-hover:-translate-y-1 group-hover:border-primary group-hover:bg-primary/10 group-hover:shadow-card">
               <Ellipsis className="h-8 w-8" />
             </span>
             <span className="flex min-h-8 items-start gap-1 text-xs font-extrabold leading-4 text-primary">

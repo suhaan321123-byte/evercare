@@ -190,7 +190,7 @@ const MegaMenu = ({ initialCatalogues, initialGroups, initialBrands }: MegaMenuP
               to="/ayurvedic-tourism"
               className="rounded-md bg-primary/10 px-3 py-2 text-sm font-semibold whitespace-nowrap text-primary transition-smooth hover:bg-primary hover:text-primary-foreground"
             >
-              Ayurvedic Tourism
+              Medical Tourism
             </Link>
           </div>
         </div>

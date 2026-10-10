@@ -27,7 +27,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import HeroSlider from "./HeroSlider";
 import OfferBar from "./OfferBar";
 import BrandShowcase from "./BrandShowcase";
-import CarePackages from "./CarePackages";
 import ProductCard from "./ProductCard";
 import { sortOutOfStockLast, type Product } from "@/data/catalog";
 import type { HomePageServerData } from "@/app/HomeClient";
@@ -128,6 +127,11 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
       sortOutOfStockLast(homeData.medicineSectionProducts ?? []).slice(0, 6),
     [homeData.medicineSectionProducts],
   );
+  const equipmentSectionProducts = useMemo(
+    () =>
+      sortOutOfStockLast(homeData.equipmentSectionProducts ?? []).slice(0, 6),
+    [homeData.equipmentSectionProducts],
+  );
   const offerProducts = useMemo(
     () =>
       sortOutOfStockLast(
@@ -197,7 +201,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
   };
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-background flex flex-col pb-16">
+    <div className="min-h-screen overflow-x-clip bg-background flex flex-col pb-16 text-foreground">
       {/* Sticky header */}
       <header className="sticky top-0 z-50 w-full shrink-0 bg-background border-b border-border shadow-soft">
         <div className="flex items-center justify-between px-4 py-2">
@@ -268,18 +272,18 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
 
       {screen === "home" ? (
         <>
-          <BrandShowcase brands={homeData.featuredBrands} />
-
           {/* Hero */}
           <HeroSlider
             initialDesktopSlides={homeData.desktopBanners}
             initialMobileSlides={homeData.mobileBanners}
           />
 
+          <BrandShowcase brands={homeData.featuredBrands} variant="mobile" />
+
           {/* Products in 2 columns */}
           <main className="space-y-3 px-4 pt-0 pb-4">
             {mobileCategoryPreview.length > 0 && (
-              <section className="-mx-4 -mt-2 bg-slate-50/80 px-4 py-4">
+              <section className="-mx-4 -mt-2 border-y border-[#eadfd7] bg-[#f8f2ec] px-4 py-5">
                 <div className="grid grid-cols-4 gap-3">
                   {mobileCategoryPreview.map(({ category, catalogue }) => (
                     <button
@@ -292,7 +296,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                       }
                       className="flex min-w-0 flex-col items-center gap-2"
                     >
-                      <span className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-muted shadow-soft">
+                      <span className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border border-[#e8ded2] bg-[#fffaf6] shadow-soft">
                         {category.image ? (
                           <img
                             src={category.image}
@@ -332,6 +336,12 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                 viewAllTo: medicineCatalogueRoute
                   ? `/products?category=${encodeURIComponent(medicineCatalogueRoute)}`
                   : "/products",
+              },
+              {
+                title: "Medical Equipment",
+                items: equipmentSectionProducts,
+                loading: false,
+                viewAllTo: "/equipment",
               },
               {
                 title: "Ayurvedic Medicines",
@@ -392,7 +402,6 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                       ))}
                   </div>
                 </section>
-                {s.title === "Medicines" ? <CarePackages compactMobile /> : null}
                 </Fragment>
               ))}
           </main>
@@ -626,7 +635,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                 tags: ["Pregnancy wellness", "Postnatal recovery"],
               },
               {
-                title: "Ayurvedic Tourism",
+                title: "Medical Tourism",
                 path: "/ayurvedic-tourism",
                 image: "/brands/ayurvedic_tourisum.png.jpg",
                 tags: ["Wellness retreats", "Kerala experiences"],

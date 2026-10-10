@@ -13,6 +13,7 @@ type HeroSliderProps = {
 
 const HeroSlider = ({ initialDesktopSlides, initialMobileSlides }: HeroSliderProps) => {
   const [idx, setIdx] = useState(0);
+  const [mobileAspectRatios, setMobileAspectRatios] = useState<Record<string, number>>({});
   const isMobile = useIsMobile();
   const deviceType = isMobile ? "Mobile" : "Desktop";
   const hasServerSlides =
@@ -32,6 +33,16 @@ const HeroSlider = ({ initialDesktopSlides, initialMobileSlides }: HeroSliderPro
     if (!primarySlide) return "";
     return (isMobile ? primarySlide.mobileImage : primarySlide.desktopImage) ?? primarySlide.image;
   }, [isMobile, primarySlide]);
+  const activeMobileAspectRatio = isMobile ? mobileAspectRatios[primaryImageSrc] : undefined;
+
+  const rememberMobileAspectRatio = (src: string, image: HTMLImageElement) => {
+    if (!isMobile || !image.naturalWidth || !image.naturalHeight) return;
+
+    const aspectRatio = image.naturalWidth / image.naturalHeight;
+    setMobileAspectRatios((current) =>
+      current[src] === aspectRatio ? current : { ...current, [src]: aspectRatio },
+    );
+  };
 
   useEffect(() => {
     if (primaryImageSrc) {
@@ -51,21 +62,52 @@ const HeroSlider = ({ initialDesktopSlides, initialMobileSlides }: HeroSliderPro
   }, [slides.length]);
 
   return (
-    <section className="w-full">
-      <div className="relative aspect-[1024/560] overflow-hidden bg-slate-100 md:aspect-[2622/650] dark:bg-slate-900">
+    <section className="w-full overflow-hidden bg-transparent md:bg-[#f7efe8]">
+      <div
+        className="relative w-full aspect-[1024/560] overflow-hidden border-0 bg-transparent md:aspect-[5/2] md:border-y md:border-[#e5d6cc] md:bg-[#f3e5dc] md:shadow-[0_16px_45px_rgba(79,54,42,0.12)]"
+        style={activeMobileAspectRatio ? { aspectRatio: activeMobileAspectRatio } : undefined}
+      >
         {slides.length > 0 ? (
           slides.map((s, i) => (
             <div
               key={`${s.alt || "slide"}-${i}`}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === idx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
             >
-              <img
-                src={(isMobile ? s.mobileImage : s.desktopImage) ?? s.image}
-                alt={s.alt ?? `Hero slide ${i + 1}`}
-                className="block h-full w-full object-cover"
-                loading={i === 0 ? "eager" : "lazy"}
-                decoding="async"
-              />
+              {s.url ? (
+                <a
+                  href={s.url}
+                  className="block h-full w-full cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#8f4653]"
+                  aria-label={s.alt ? `Open ${s.alt}` : `Open hero promotion ${i + 1}`}
+                >
+                  <img
+                    src={(isMobile ? s.mobileImage : s.desktopImage) ?? s.image}
+                    alt={s.alt ?? `Hero slide ${i + 1}`}
+                    className="block h-full w-full object-contain md:object-cover"
+                    onLoad={(event) =>
+                      rememberMobileAspectRatio(
+                        (isMobile ? s.mobileImage : s.desktopImage) ?? s.image,
+                        event.currentTarget,
+                      )
+                    }
+                    loading={i === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
+                </a>
+              ) : (
+                <img
+                  src={(isMobile ? s.mobileImage : s.desktopImage) ?? s.image}
+                  alt={s.alt ?? `Hero slide ${i + 1}`}
+                  className="block h-full w-full object-contain md:object-cover"
+                  onLoad={(event) =>
+                    rememberMobileAspectRatio(
+                      (isMobile ? s.mobileImage : s.desktopImage) ?? s.image,
+                      event.currentTarget,
+                    )
+                  }
+                  loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                />
+              )}
             </div>
           ))
         ) : (
@@ -83,6 +125,22 @@ const HeroSlider = ({ initialDesktopSlides, initialMobileSlides }: HeroSliderPro
             ) : null}
           </div>
         )}
+        {slides.length > 1 ? (
+          <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-2 md:bottom-4">
+            {slides.map((slide, i) => (
+              <button
+                key={`${slide.alt || "slide-dot"}-${i}`}
+                type="button"
+                onClick={() => setIdx(i)}
+                aria-label={`Show hero slide ${i + 1}`}
+                aria-current={i === idx ? "true" : undefined}
+                className={`h-2 rounded-full border border-white/80 shadow-sm transition-all duration-300 ${
+                  i === idx ? "w-7 bg-[#8f4653]" : "w-2 bg-white/80 hover:bg-white"
+                }`}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   );

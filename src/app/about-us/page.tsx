@@ -4,7 +4,7 @@ import { AboutUsClient } from "./AboutUsClient";
 export const metadata = buildPageMetadata({
   title: "About Us",
   description:
-    "Discover Evercare Med Group's trusted Ayurvedic medicines, postpartum care services, and medical equipment for lifelong health and wellbeing.",
+    "Learn about Evercare MedGroup, our mission, healthcare and wellness services, and our commitment to ethical, patient-centred care.",
   path: "/about-us",
 });
 

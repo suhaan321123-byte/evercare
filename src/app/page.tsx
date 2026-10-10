@@ -83,8 +83,13 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
 
   const riceCatalogue = findCatalogueByName(catalogues, "Rice & Rice Products");
   const frozenCatalogue = findCatalogueByName(catalogues, "Frozen Items");
+  const equipmentCatalogue = catalogues.find((catalogue) =>
+    /equipment|medical device/i.test(
+      `${catalogue.name} ${catalogue.route} ${catalogue.slug}`,
+    ),
+  );
   const medicineCatalogue = catalogues.find((catalogue) =>
-    /medicine|pharma|healthcare/i.test(
+    /medicine|pharma|ayurveda/i.test(
       `${catalogue.name} ${catalogue.route} ${catalogue.slug}`,
     ),
   );
@@ -101,6 +106,7 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
     ricePage,
     frozenPage,
     medicinePage,
+    equipmentPage,
   ] = await Promise.all([
     getPagedCatalogueProducts({
       page: 1,
@@ -133,6 +139,14 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
           limit: 100,
         })
       : Promise.resolve({ products: [], pagination: { currentPage: 1, pageSize: 100, totalItems: 0, totalPages: 1, hasPrev: false, hasNext: false } }),
+    equipmentCatalogue?._id
+      ? getPagedCatalogueProducts({
+          catalogueId: equipmentCatalogue._id,
+          page: 1,
+          limit: 6,
+          sortBy: "newest",
+        })
+      : Promise.resolve({ products: [], pagination: { currentPage: 1, pageSize: 6, totalItems: 0, totalPages: 1, hasPrev: false, hasNext: false } }),
   ]);
 
   const medicineCategoryImages = new Map(
@@ -169,6 +183,7 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
     mobileBanners,
     scrollingItems,
     medicineSectionProducts: medicinePage.products.slice(0, 6),
+    equipmentSectionProducts: equipmentPage.products.slice(0, 6),
     newestArrivals: newestPage.products,
     offerProducts: offersPage.products,
     riceSectionProducts: ricePage.products,
@@ -189,6 +204,7 @@ export default async function HomePage() {
     mobileBanners: [],
     scrollingItems: [],
     medicineSectionProducts: [],
+    equipmentSectionProducts: [],
     newestArrivals: [],
     offerProducts: [],
     riceSectionProducts: [],
