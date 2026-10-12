@@ -26,7 +26,7 @@ const Header = ({ hideSearch = false, hideAccount = false, hideCart = false, rig
           <img
             src="/evercaremed_logo.png"
             alt="Store logo"
-            className="block h-[52.8px] w-auto max-w-[176px] object-contain md:h-[61.6px] md:max-w-[220px]"
+            className="block h-16 w-auto max-w-[210px] object-contain md:h-[72px] md:max-w-[260px]"
           />
         </a>
 

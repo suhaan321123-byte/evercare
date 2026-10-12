@@ -92,7 +92,7 @@ const MegaMenu = ({ initialCatalogues, initialGroups, initialBrands }: MegaMenuP
     );
 
   return (
-    <nav className="sticky top-[81px] z-40 w-full bg-card border-b border-border shadow-soft">
+    <nav className="sticky top-[96px] z-40 w-full bg-card border-b border-border shadow-soft">
       <div className="site-container">
         <div className="flex items-center whitespace-nowrap">
           <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto">

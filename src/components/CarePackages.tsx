@@ -129,17 +129,17 @@ const CareList = ({ items }: { items: string[] }) => (
 const CarePackages = ({ onEnquire, compactMobile = false }: CarePackagesProps) => (
   <section
     id="wellness-packages"
-    className={compactMobile ? "bg-transparent py-4" : "border-y border-[#eadfd5] bg-[#f8f2ec] py-16 lg:py-24"}
+    className={compactMobile ? "bg-transparent py-4" : "border-y border-[#dce8d4] bg-[#f1f7ec] py-16 lg:py-24"}
   >
     <div className={compactMobile ? "site-container px-0" : "site-container px-4 sm:px-6 lg:px-8"}>
       <div className="mx-auto max-w-3xl text-center">
-        <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#a34f5e]">Mother &amp; Baby Wellness Packages</p>
+        <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#4f8138]">Mother &amp; Baby Wellness Packages</p>
         {!compactMobile ? (
           <>
-            <h2 className="mt-3 text-3xl font-black leading-tight text-[#293327] sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-black leading-tight text-[#173d28] sm:text-4xl">
               Nurturing care for the early days of motherhood
             </h2>
-            <p className="mt-5 text-base leading-8 text-[#62685d]">
+            <p className="mt-5 text-base leading-8 text-[#667563]">
               An Ayurvedic journey for mother and newborn, combining traditional postnatal care,
               nourishing food, relaxation, and guided baby care.
             </p>
@@ -160,7 +160,7 @@ const CarePackages = ({ onEnquire, compactMobile = false }: CarePackagesProps) =
             key={carePackage.title}
             className={`relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border bg-white shadow-[0_14px_40px_rgba(72,55,43,0.08)] ${
               compactMobile ? "w-[82vw] max-w-[340px] shrink-0 snap-start" : ""
-            } ${carePackage.featured ? "border-[#b6727d] ring-1 ring-[#b6727d]/20" : "border-[#e5d9cf]"}`}
+            } ${carePackage.featured ? "border-[#8fba79] ring-1 ring-[#8fba79]/20" : "border-[#dce8d4]"}`}
           >
             <div className="relative h-48 overflow-hidden">
               <img
@@ -175,7 +175,7 @@ const CarePackages = ({ onEnquire, compactMobile = false }: CarePackagesProps) =
                 {carePackage.duration}
               </span>
               {carePackage.featured ? (
-                <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-[#8f4653] px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-white shadow-sm">
+                <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-[#4f8138] px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-white shadow-sm">
                   <Crown className="h-3.5 w-3.5" /> Flagship
                 </span>
               ) : null}
@@ -184,23 +184,23 @@ const CarePackages = ({ onEnquire, compactMobile = false }: CarePackagesProps) =
             <div className="flex flex-1 flex-col p-6 sm:p-7">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#a34f5e]">{carePackage.duration} package</p>
-                  <h3 className="mt-2 text-2xl font-black leading-tight text-[#293327]">{carePackage.title}</h3>
+                  <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#4f8138]">{carePackage.duration} package</p>
+                  <h3 className="mt-2 text-2xl font-black leading-tight text-[#173d28]">{carePackage.title}</h3>
                 </div>
-                <p className="shrink-0 text-xl font-black text-[#8f4653]">{carePackage.price}</p>
+                <p className="shrink-0 text-xl font-black text-[#4f8138]">{carePackage.price}</p>
               </div>
               <p className="mt-4 text-sm leading-6 text-[#74796f]">{carePackage.description}</p>
 
               <div className="mt-7 border-t border-[#ece2da] pt-6">
                 <h4 className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#46503f]">
-                  <HeartHandshake className="h-4 w-4 text-[#a34f5e]" /> Mother care
+                  <HeartHandshake className="h-4 w-4 text-[#4f8138]" /> Mother care
                 </h4>
                 <CareList items={carePackage.motherCare} />
               </div>
 
               <div className="mt-7 border-t border-[#ece2da] pt-6">
                 <h4 className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#46503f]">
-                  <Baby className="h-4 w-4 text-[#71813d]" /> Baby care
+                  <Baby className="h-4 w-4 text-[#638d4b]" /> Baby care
                 </h4>
                 <CareList items={carePackage.babyCare} />
               </div>
@@ -210,14 +210,14 @@ const CarePackages = ({ onEnquire, compactMobile = false }: CarePackagesProps) =
                   <button
                     type="button"
                     onClick={onEnquire}
-                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#8f4653] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#773945] focus:outline-none focus:ring-2 focus:ring-[#8f4653] focus:ring-offset-2"
+                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#4f8138] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#315f2a] focus:outline-none focus:ring-2 focus:ring-[#4f8138] focus:ring-offset-2"
                   >
                     Discuss this package
                   </button>
                 ) : (
                   <Link
                     to="/prenatal-postnatal-care?questionnaire=open"
-                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#8f4653] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#773945] focus:outline-none focus:ring-2 focus:ring-[#8f4653] focus:ring-offset-2"
+                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#4f8138] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#315f2a] focus:outline-none focus:ring-2 focus:ring-[#4f8138] focus:ring-offset-2"
                   >
                     Discuss this package
                   </Link>

@@ -25,7 +25,7 @@ type FooterProps = {
 
 const Footer = ({ premium = true }: FooterProps) => {
   return (
-    <footer className={`mt-12 hidden border-t md:block ${premium ? "border-[#465143] bg-[#313c31] text-white" : "border-border bg-card"}`}>
+    <footer className={`mt-12 hidden border-t md:block ${premium ? "border-[#315f2a] bg-[linear-gradient(145deg,#143521_0%,#244f30_100%)] text-white" : "border-border bg-card"}`}>
       <div className="site-container py-10">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.9fr_1fr]">
           <div>
@@ -33,7 +33,7 @@ const Footer = ({ premium = true }: FooterProps) => {
               <img
                 src="/evercaremed_logo.png"
                 alt="EvercareMed"
-                className="h-14 w-auto max-w-[180px] object-contain"
+                className="h-16 w-auto max-w-[210px] object-contain"
               />
             </Link>
             <p className={`mt-4 max-w-sm text-sm leading-6 ${premium ? "text-white/65" : "text-muted-foreground"}`}>
@@ -48,7 +48,7 @@ const Footer = ({ premium = true }: FooterProps) => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`block text-sm transition-smooth ${premium ? "text-white/60 hover:text-[#f6c9c3]" : "text-muted-foreground hover:text-primary"}`}
+                  className={`block text-sm transition-smooth ${premium ? "text-white/60 hover:text-[#cde5bd]" : "text-muted-foreground hover:text-primary"}`}
                 >
                   {link.label}
                 </Link>
@@ -63,7 +63,7 @@ const Footer = ({ premium = true }: FooterProps) => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`block text-sm transition-smooth ${premium ? "text-white/60 hover:text-[#f6c9c3]" : "text-muted-foreground hover:text-primary"}`}
+                  className={`block text-sm transition-smooth ${premium ? "text-white/60 hover:text-[#cde5bd]" : "text-muted-foreground hover:text-primary"}`}
                 >
                   {link.label}
                 </Link>
@@ -76,27 +76,27 @@ const Footer = ({ premium = true }: FooterProps) => {
             <div className={`mt-4 space-y-3 text-sm ${premium ? "text-white/60" : "text-muted-foreground"}`}>
               <a
                 href="https://www.google.com/maps/search/Varthur+Kodi,+Whitefield+Main+Road+Bangalore+560066"
-                className={`flex items-start gap-2 transition-smooth ${premium ? "hover:text-[#f6c9c3]" : "hover:text-primary"}`}
+                className={`flex items-start gap-2 transition-smooth ${premium ? "hover:text-[#cde5bd]" : "hover:text-primary"}`}
               >
-                <MapPin className={`mt-0.5 h-4 w-4 shrink-0 ${premium ? "text-[#f6c9c3]" : "text-primary"}`} />
+                <MapPin className={`mt-0.5 h-4 w-4 shrink-0 ${premium ? "text-[#cde5bd]" : "text-primary"}`} />
                 <span>
                   Suite1B, BusinezzBay, 4th Floor Gamma Block, Sigma Soft Tech Park, Varthur Kodi, Whitefield Main
                   Road, Bangalore 560066
                 </span>
               </a>
-              <a href="mailto:evercaremedmedgroup@gmail.com" className={`flex items-center gap-2 transition-smooth ${premium ? "hover:text-[#f6c9c3]" : "hover:text-primary"}`}>
-                <Mail className={`h-4 w-4 shrink-0 ${premium ? "text-[#f6c9c3]" : "text-primary"}`} />
+              <a href="mailto:evercaremedmedgroup@gmail.com" className={`flex items-center gap-2 transition-smooth ${premium ? "hover:text-[#cde5bd]" : "hover:text-primary"}`}>
+                <Mail className={`h-4 w-4 shrink-0 ${premium ? "text-[#cde5bd]" : "text-primary"}`} />
                 <span>evercaremedmedgroup@gmail.com</span>
               </a>
-              <a href="tel:8951982743" className={`flex items-center gap-2 transition-smooth ${premium ? "hover:text-[#f6c9c3]" : "hover:text-primary"}`}>
-                <Phone className={`h-4 w-4 shrink-0 ${premium ? "text-[#f6c9c3]" : "text-primary"}`} />
+              <a href="tel:8951982743" className={`flex items-center gap-2 transition-smooth ${premium ? "hover:text-[#cde5bd]" : "hover:text-primary"}`}>
+                <Phone className={`h-4 w-4 shrink-0 ${premium ? "text-[#cde5bd]" : "text-primary"}`} />
                 <span>8951982743</span>
               </a>
               <a
                 href="https://evercare-two.vercel.app"
-                className={`flex items-center gap-2 transition-smooth ${premium ? "hover:text-[#f6c9c3]" : "hover:text-primary"}`}
+                className={`flex items-center gap-2 transition-smooth ${premium ? "hover:text-[#cde5bd]" : "hover:text-primary"}`}
               >
-                <Globe className={`h-4 w-4 shrink-0 ${premium ? "text-[#f6c9c3]" : "text-primary"}`} />
+                <Globe className={`h-4 w-4 shrink-0 ${premium ? "text-[#cde5bd]" : "text-primary"}`} />
                 <span>evercare-two.vercel.app</span>
               </a>
             </div>

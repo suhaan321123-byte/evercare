@@ -78,7 +78,7 @@ const Index = ({ homeData }: { homeData: HomePageServerData }) => {
             accent="accent"
             loading={false}
             viewAllTo={medicineCatalogueRoute ? `/products?category=${encodeURIComponent(medicineCatalogueRoute)}` : "/products"}
-            titleClassName="text-xl font-black leading-tight text-[#293327] sm:text-2xl md:text-2xl"
+            titleClassName="text-xl font-black leading-tight text-[#173d28] sm:text-2xl md:text-2xl"
           />
         )}
         {equipmentSectionProducts.length > 0 && (
@@ -88,7 +88,7 @@ const Index = ({ homeData }: { homeData: HomePageServerData }) => {
             accent="secondary"
             loading={false}
             viewAllTo="/equipment"
-            titleClassName="text-xl font-black leading-tight text-[#293327] sm:text-2xl md:text-2xl"
+            titleClassName="text-xl font-black leading-tight text-[#173d28] sm:text-2xl md:text-2xl"
           />
         )}
         <CareHighlights variant="home" />

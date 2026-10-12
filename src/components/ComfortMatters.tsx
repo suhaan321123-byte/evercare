@@ -18,40 +18,40 @@ const comfortItems: ComfortItem[] = [
     icon: ShieldCheck,
     title: "Qualified practitioners",
     description: "Every session is guided by trained Ayurvedic professionals.",
-    iconStyle: "bg-[#f3ddd8] text-[#a34f5e]",
+    iconStyle: "bg-[#e2f0d8] text-[#4f8138]",
   },
   {
     icon: HeartHandshake,
     title: "Personal consultation",
     description: "Your treatment plan begins with time to understand your needs.",
-    iconStyle: "bg-[#e8eddc] text-[#71813d]",
+    iconStyle: "bg-[#edf5e7] text-[#638d4b]",
   },
   {
     icon: Leaf,
     title: "Authentic ingredients",
     description: "We use carefully selected oils and herbs prepared for each therapy.",
-    iconStyle: "bg-[#f3e5dc] text-[#8d665f]",
+    iconStyle: "bg-[#dcebd3] text-[#315f2a]",
   },
   {
     icon: ConciergeBell,
     title: "Thoughtful hospitality",
     description: "Arrive early, settle in, and leave with simple aftercare guidance.",
-    iconStyle: "bg-[#eef1e5] text-[#56613e]",
+    iconStyle: "bg-[#f0f6eb] text-[#527647]",
   },
 ];
 
 const ComfortMatters = () => (
   <section
-    className="border-y border-[#eadfd7] bg-[linear-gradient(135deg,#fffaf6_0%,#f8f2ec_52%,#e8eddc_100%)] py-12 sm:py-14 lg:py-16"
+    className="border-y border-[#dce8d4] bg-[linear-gradient(135deg,#f9fcf6_0%,#f1f7ec_52%,#e4f0d9_100%)] py-12 sm:py-14 lg:py-16"
     aria-labelledby="comfort-matters-heading"
   >
     <div className="site-container px-4 sm:px-6 lg:px-8">
-      <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#8f4653] sm:text-sm">
+      <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#4f8138] sm:text-sm">
         Your comfort matters
       </p>
       <h2
         id="comfort-matters-heading"
-        className="mt-2 text-2xl font-black leading-tight text-[#293327] sm:text-3xl"
+        className="mt-2 text-2xl font-black leading-tight text-[#173d28] sm:text-3xl"
       >
         A calm, personal way to heal
       </h2>
@@ -60,15 +60,15 @@ const ComfortMatters = () => (
         {comfortItems.map(({ icon: Icon, title, description, iconStyle }) => (
           <article
             key={title}
-            className="min-h-[174px] rounded-2xl border border-[#eadfd7] bg-[#fffdf9] p-5 shadow-[0_10px_30px_rgba(91,61,47,0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[#d9aeb5] hover:shadow-[0_14px_34px_rgba(91,61,47,0.12)] sm:p-6"
+            className="min-h-[174px] rounded-2xl border border-[#dce8d4] bg-white p-5 shadow-[0_10px_30px_rgba(28,66,39,0.07)] transition duration-300 hover:-translate-y-0.5 hover:border-[#aac99a] hover:shadow-[0_14px_34px_rgba(28,66,39,0.12)] sm:p-6"
           >
             <span className={`flex h-11 w-11 items-center justify-center rounded-full ${iconStyle}`}>
               <Icon className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h3 className="mt-5 text-base font-extrabold text-[#293327]">
+            <h3 className="mt-5 text-base font-extrabold text-[#173d28]">
               {title}
             </h3>
-            <p className="mt-1.5 text-sm leading-6 text-[#62685d]">
+            <p className="mt-1.5 text-sm leading-6 text-[#667563]">
               {description}
             </p>
           </article>

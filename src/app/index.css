@@ -65,51 +65,51 @@
   }
 
   body.home-premium-theme {
-    --background: 40 100% 99%;
-    --foreground: 105 13% 18%;
+    --background: 96 38% 98%;
+    --foreground: 143 43% 15%;
 
-    --card: 24 100% 98%;
-    --card-foreground: 105 13% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 143 43% 15%;
 
-    --popover: 24 100% 98%;
-    --popover-foreground: 105 13% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 143 43% 15%;
 
-    --primary: 350 34% 42%;
+    --primary: 104 43% 35%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 350 34% 54%;
+    --primary-glow: 100 42% 52%;
 
-    --secondary: 72 36% 37%;
+    --secondary: 93 31% 47%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 28 41% 93%;
-    --muted-foreground: 98 7% 39%;
+    --muted: 96 33% 94%;
+    --muted-foreground: 127 10% 39%;
 
-    --accent: 350 34% 47%;
+    --accent: 106 42% 39%;
     --accent-foreground: 0 0% 100%;
 
-    --border: 26 30% 88%;
-    --input: 26 30% 86%;
-    --ring: 350 34% 42%;
+    --border: 103 25% 86%;
+    --input: 103 25% 83%;
+    --ring: 104 43% 35%;
 
-    --gradient-hero: linear-gradient(135deg, #8f4653, #a34f5e);
-    --gradient-warm: linear-gradient(135deg, #f3ddd8, #e8eddc);
-    --gradient-soft: linear-gradient(180deg, #fffdf9, #f8f2ec);
-    --shadow-soft: 0 8px 26px -14px rgba(79, 54, 42, 0.2);
-    --shadow-card: 0 20px 50px -24px rgba(79, 54, 42, 0.28);
-    --shadow-glow: 0 0 38px rgba(143, 70, 83, 0.22);
+    --gradient-hero: linear-gradient(135deg, #315f2a, #639747);
+    --gradient-warm: linear-gradient(135deg, #e4f0d9, #f4f8ef);
+    --gradient-soft: linear-gradient(180deg, #ffffff, #f1f7ec);
+    --shadow-soft: 0 8px 26px -14px rgba(28, 66, 39, 0.16);
+    --shadow-card: 0 20px 50px -24px rgba(28, 66, 39, 0.24);
+    --shadow-glow: 0 0 38px rgba(99, 151, 71, 0.22);
     background:
-      radial-gradient(circle at 8% 18%, rgba(163, 79, 94, 0.055), transparent 28rem),
-      radial-gradient(circle at 92% 48%, rgba(113, 129, 61, 0.055), transparent 32rem),
-      #fffdf9;
+      radial-gradient(circle at 8% 18%, rgba(132, 176, 101, 0.09), transparent 28rem),
+      radial-gradient(circle at 92% 48%, rgba(69, 119, 62, 0.07), transparent 32rem),
+      #fbfdf9;
   }
 
   body.home-premium-theme ::selection {
-    background: rgba(163, 79, 94, 0.2);
-    color: #293327;
+    background: rgba(112, 158, 78, 0.22);
+    color: #173d28;
   }
 
   body.home-premium-theme :focus-visible {
-    outline-color: #8f4653;
+    outline-color: #4f8138;
   }
 }
 

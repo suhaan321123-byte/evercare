@@ -222,7 +222,7 @@ const OfferBar = ({ speed = "default", initialItems }: OfferBarProps) => {
   return (
     <div className="w-full">
       <div
-        className="relative cursor-grab select-none overflow-hidden border-y border-[#eadfd7] bg-[#f3e5dc] active:cursor-grabbing"
+        className="relative cursor-grab select-none overflow-hidden border-y border-[#d7e6ce] bg-[#edf5e7] active:cursor-grabbing"
         onMouseEnter={handleHoverStart}
         onMouseLeave={handleHoverEnd}
         onMouseDown={handleMouseDown}
@@ -243,11 +243,11 @@ const OfferBar = ({ speed = "default", initialItems }: OfferBarProps) => {
             {items.map((text, i) => (
               <div
                 key={i}
-                className="flex shrink-0 items-center px-3 text-[11px] font-bold tracking-wide text-[#8f4653] sm:px-8 sm:text-sm"
+                className="flex shrink-0 items-center px-3 text-[11px] font-bold tracking-wide text-[#315f2a] sm:px-8 sm:text-sm"
                 style={{ userSelect: "none", WebkitUserSelect: "none" }}
               >
                 <span>{text}</span>
-                <span className="ml-3 select-none text-[#a34f5e]/45 sm:ml-6">
+                <span className="ml-3 select-none text-[#6f9d56]/50 sm:ml-6">
                   •
                 </span>
               </div>

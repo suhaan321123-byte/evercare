@@ -8,11 +8,11 @@ type BrandShowcaseProps = {
 };
 
 const brandStyles = [
-  "from-[#fffaf6] to-[#f3ddd8] text-[#8f4653] border-[#dfc5c3]",
-  "from-[#fbfdf7] to-[#e5eccf] text-[#71813d] border-[#d2dcb9]",
-  "from-[#fffdf9] to-[#f3e5dc] text-[#8d665f] border-[#e4d2c8]",
-  "from-[#f8f2ec] to-[#e8eddc] text-[#56613e] border-[#d9dfc9]",
-  "from-[#fffaf7] to-[#eadfd7] text-[#68343e] border-[#ddc9c1]",
+  "from-[#fbfdf9] to-[#e4f0d9] text-[#315f2a] border-[#ccdfc1]",
+  "from-[#f8fcf5] to-[#dcebd3] text-[#4f8138] border-[#c5dbb8]",
+  "from-[#ffffff] to-[#edf5e7] text-[#527647] border-[#d7e6ce]",
+  "from-[#f5faf1] to-[#dfeecf] text-[#3f6f35] border-[#c9ddbd]",
+  "from-[#fbfdf9] to-[#e8f3e0] text-[#254f32] border-[#d2e3c8]",
 ];
 
 const getBrandMark = (brand: string) =>
@@ -57,7 +57,7 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
                         getBrandMark(brand.name)
                       )}
                     </span>
-                    <span className="mt-3 line-clamp-2 min-h-10 text-xs font-extrabold leading-5 text-[#3c4939] transition-colors group-hover:text-[#8f4653] xl:text-sm">
+                    <span className="mt-3 line-clamp-2 min-h-10 text-xs font-extrabold leading-5 text-[#314737] transition-colors group-hover:text-[#4f8138] xl:text-sm">
                       {brand.name}
                     </span>
                   </Link>
@@ -65,10 +65,10 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
               </div>
             </div>
 
-            <div className="relative isolate flex min-h-[430px] flex-col justify-center overflow-hidden rounded-[1.75rem] bg-[#314431] px-9 py-12 text-white xl:px-12">
+            <div className="relative isolate flex min-h-[430px] flex-col justify-center overflow-hidden rounded-[1.75rem] bg-[linear-gradient(145deg,#173d28_0%,#315f2a_100%)] px-9 py-12 text-white shadow-card xl:px-12">
               <span className="pointer-events-none absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full border-[44px] border-white/[0.06]" />
-              <span className="pointer-events-none absolute -bottom-16 -left-16 -z-10 h-48 w-48 rounded-full bg-[#d8b9b5]/10" />
-              <p className="mb-4 text-xs font-black uppercase tracking-[0.2em] text-[#e8cfd0]">Trusted partners</p>
+              <span className="pointer-events-none absolute -bottom-16 -left-16 -z-10 h-48 w-48 rounded-full bg-[#b9d7a8]/10" />
+              <p className="mb-4 text-xs font-black uppercase tracking-[0.2em] text-[#cde5bd]">Trusted partners</p>
               <h2 className="max-w-sm text-4xl font-black leading-[1.08] tracking-[-0.04em] xl:text-[2.75rem]">
                 Brands selected with care
               </h2>
@@ -77,7 +77,7 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
               </p>
               <Link
                 to="/products"
-                className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#314431] transition duration-300 hover:-translate-y-0.5 hover:bg-[#f7ece9]"
+                className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#244b2e] transition duration-300 hover:-translate-y-0.5 hover:bg-[#edf5e7]"
               >
                 Explore all brands <ArrowRight className="h-4 w-4" />
               </Link>
@@ -92,9 +92,9 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
     <section className="site-container px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-8 lg:pt-14" aria-label="Featured brands">
       <div className="mb-4 flex items-end justify-between gap-4 sm:mb-7">
         <div>
-          <h2 className="text-xl font-black text-[#293327] sm:text-2xl">Brands selected with care</h2>
+          <h2 className="text-xl font-black text-[#173d28] sm:text-2xl">Brands selected with care</h2>
         </div>
-        <Link to="/products" className="hidden items-center gap-2 text-sm font-extrabold text-[#8f4653] sm:inline-flex">
+        <Link to="/products" className="hidden items-center gap-2 text-sm font-extrabold text-[#4f8138] sm:inline-flex">
           Explore all <ArrowRight className="h-4 w-4" />
         </Link>
       </div>

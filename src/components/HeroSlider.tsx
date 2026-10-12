@@ -62,9 +62,9 @@ const HeroSlider = ({ initialDesktopSlides, initialMobileSlides }: HeroSliderPro
   }, [slides.length]);
 
   return (
-    <section className="w-full overflow-hidden bg-transparent md:bg-[#f7efe8]">
+    <section className="w-full overflow-hidden bg-transparent md:bg-[#f1f7ec]">
       <div
-        className="relative w-full aspect-[1024/560] overflow-hidden border-0 bg-transparent md:aspect-[5/2] md:border-y md:border-[#e5d6cc] md:bg-[#f3e5dc] md:shadow-[0_16px_45px_rgba(79,54,42,0.12)]"
+        className="relative w-full aspect-[1024/560] overflow-hidden border-0 bg-transparent md:aspect-[5/2] md:border-y md:border-[#d7e6ce] md:bg-[#eaf4e3] md:shadow-[0_16px_45px_rgba(28,66,39,0.12)]"
         style={activeMobileAspectRatio ? { aspectRatio: activeMobileAspectRatio } : undefined}
       >
         {slides.length > 0 ? (
@@ -76,7 +76,7 @@ const HeroSlider = ({ initialDesktopSlides, initialMobileSlides }: HeroSliderPro
               {s.url ? (
                 <a
                   href={s.url}
-                  className="block h-full w-full cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#8f4653]"
+                  className="block h-full w-full cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#4f8138]"
                   aria-label={s.alt ? `Open ${s.alt}` : `Open hero promotion ${i + 1}`}
                 >
                   <img
@@ -135,7 +135,7 @@ const HeroSlider = ({ initialDesktopSlides, initialMobileSlides }: HeroSliderPro
                 aria-label={`Show hero slide ${i + 1}`}
                 aria-current={i === idx ? "true" : undefined}
                 className={`h-2 rounded-full border border-white/80 shadow-sm transition-all duration-300 ${
-                  i === idx ? "w-7 bg-[#8f4653]" : "w-2 bg-white/80 hover:bg-white"
+                  i === idx ? "w-7 bg-[#4f8138]" : "w-2 bg-white/80 hover:bg-white"
                 }`}
               />
             ))}

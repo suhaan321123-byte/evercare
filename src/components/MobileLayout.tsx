@@ -283,7 +283,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
           {/* Products in 2 columns */}
           <main className="space-y-3 px-4 pt-0 pb-4">
             {mobileCategoryPreview.length > 0 && (
-              <section className="-mx-4 -mt-2 border-y border-[#eadfd7] bg-[#f8f2ec] px-4 py-5">
+              <section className="-mx-4 -mt-2 border-y border-[#dce8d4] bg-[#f1f7ec] px-4 py-5">
                 <div className="grid grid-cols-4 gap-3">
                   {mobileCategoryPreview.map(({ category, catalogue }) => (
                     <button
@@ -296,7 +296,7 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
                       }
                       className="flex min-w-0 flex-col items-center gap-2"
                     >
-                      <span className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border border-[#e8ded2] bg-[#fffaf6] shadow-soft">
+                      <span className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border border-[#dce8d4] bg-white shadow-soft">
                         {category.image ? (
                           <img
                             src={category.image}
