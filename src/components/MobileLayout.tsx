@@ -278,7 +278,11 @@ const MobileLayout = ({ homeData }: { homeData: HomePageServerData }) => {
             initialMobileSlides={homeData.mobileBanners}
           />
 
-          <BrandShowcase brands={homeData.featuredBrands} variant="mobile" />
+          <BrandShowcase
+            brands={homeData.featuredBrands}
+            variant="mobile"
+            catalogueRoute={medicineCatalogueRoute}
+          />
 
           {/* Products in 2 columns */}
           <main className="space-y-3 px-4 pt-0 pb-4">

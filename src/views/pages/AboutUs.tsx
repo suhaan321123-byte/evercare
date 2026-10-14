@@ -15,9 +15,9 @@ import {
   Hospital,
   Leaf,
   MessageCircleHeart,
+  Pill,
   ShieldCheck,
   Sparkles,
-  Stethoscope,
   UsersRound,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -27,7 +27,7 @@ const services = [
   { title: "Medical Tourism Assistance", icon: Globe2 },
   { title: "Ayurvedic Consultation & Wellness Programs", icon: Leaf },
   { title: "Preventive Health Check-up Coordination", icon: ClipboardPlus },
-  { title: "Specialist Doctor Consultations", icon: Stethoscope },
+  { title: "Medicines Supply", icon: Pill },
   { title: "Hospital & Treatment Coordination", icon: Hospital },
   { title: "Second Medical Opinion", icon: CheckCircle2 },
   { title: "Health & Wellness Counseling", icon: MessageCircleHeart },

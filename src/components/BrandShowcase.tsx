@@ -5,6 +5,7 @@ import type { ProductBrand } from "@/services/catalogues";
 type BrandShowcaseProps = {
   brands: ProductBrand[];
   variant?: "mobile" | "desktop";
+  catalogueRoute?: string;
 };
 
 const brandStyles = [
@@ -24,14 +25,25 @@ const getBrandMark = (brand: string) =>
     .join("")
     .toUpperCase();
 
-const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
-  const visibleBrands = brands.slice(0, 9);
+const BrandShowcase = ({ brands, variant = "mobile", catalogueRoute }: BrandShowcaseProps) => {
+  const visibleBrands = brands.slice(0, 5);
+  const catalogueHref = catalogueRoute
+    ? `/products?category=${encodeURIComponent(catalogueRoute)}`
+    : "/products";
+  const getBrandHref = (brandName: string) => {
+    const params = new URLSearchParams();
+
+    if (catalogueRoute) params.set("category", catalogueRoute);
+    params.set("brand", brandName);
+
+    return `/products?${params.toString()}`;
+  };
 
   if (visibleBrands.length === 0) return null;
 
   if (variant === "desktop") {
     return (
-      <section className="site-container px-6 py-16 lg:px-8 lg:py-20" aria-label="Featured brands">
+      <section className="site-container px-6 py-16 lg:px-8 lg:py-20" aria-label="Medicine brands">
         <div>
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)] xl:gap-16">
             <div>
@@ -39,7 +51,7 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
                 {visibleBrands.map((brand, index) => (
                   <Link
                     key={brand._id}
-                    to={`/products?brand=${encodeURIComponent(brand.name)}`}
+                    to={getBrandHref(brand.name)}
                     className="group mx-auto flex w-full max-w-[132px] min-w-0 flex-col items-center text-center xl:max-w-[140px]"
                     aria-label={`Shop ${brand.name}`}
                   >
@@ -62,6 +74,18 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
                     </span>
                   </Link>
                 ))}
+                <Link
+                  to={catalogueHref}
+                  className="group mx-auto flex w-full max-w-[132px] min-w-0 flex-col items-center text-center xl:max-w-[140px]"
+                  aria-label="View more medicine brands"
+                >
+                  <span className="flex aspect-square w-full items-center justify-center rounded-full border-2 border-dashed border-[#7aaa61] bg-[#edf5e7] text-[#315f2a] shadow-[0_12px_30px_-22px_rgba(57,44,37,.7)] transition duration-300 group-hover:-translate-y-1.5 group-hover:border-[#4f8138] group-hover:bg-[#e4f0d9] group-hover:shadow-card">
+                    <Ellipsis className="h-9 w-9" />
+                  </span>
+                  <span className="mt-3 inline-flex min-h-10 items-start gap-1 text-xs font-extrabold leading-5 text-[#315f2a] xl:text-sm">
+                    View More <ArrowRight className="mt-0.5 h-4 w-4" />
+                  </span>
+                </Link>
               </div>
             </div>
 
@@ -70,16 +94,16 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
               <span className="pointer-events-none absolute -bottom-16 -left-16 -z-10 h-48 w-48 rounded-full bg-[#b9d7a8]/10" />
               <p className="mb-4 text-xs font-black uppercase tracking-[0.2em] text-[#cde5bd]">Trusted partners</p>
               <h2 className="max-w-sm text-4xl font-black leading-[1.08] tracking-[-0.04em] xl:text-[2.75rem]">
-                Brands selected with care
+                Medicine brands selected with care
               </h2>
               <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
-                Explore trusted names chosen for dependable quality, thoughtful formulations, and everyday wellness.
+                Browse trusted medicine brands chosen for dependable quality, thoughtful formulations, and everyday wellness.
               </p>
               <Link
-                to="/products"
+                to={catalogueHref}
                 className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#244b2e] transition duration-300 hover:-translate-y-0.5 hover:bg-[#edf5e7]"
               >
-                Explore all brands <ArrowRight className="h-4 w-4" />
+                View all medicines <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -89,12 +113,12 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
   }
 
   return (
-    <section className="site-container px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-8 lg:pt-14" aria-label="Featured brands">
+    <section className="site-container px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-8 lg:pt-14" aria-label="Medicine brands">
       <div className="mb-4 flex items-end justify-between gap-4 sm:mb-7">
         <div>
-          <h2 className="text-xl font-black text-[#173d28] sm:text-2xl">Brands selected with care</h2>
+          <h2 className="text-xl font-black text-[#173d28] sm:text-2xl">Medicine brands</h2>
         </div>
-        <Link to="/products" className="hidden items-center gap-2 text-sm font-extrabold text-[#4f8138] sm:inline-flex">
+        <Link to={catalogueHref} className="hidden items-center gap-2 text-sm font-extrabold text-[#4f8138] sm:inline-flex">
           Explore all <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -104,7 +128,7 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
             return (
               <Link
                 key={brand._id}
-                to={`/products?brand=${encodeURIComponent(brand.name)}`}
+                to={getBrandHref(brand.name)}
                 className="group flex w-[84px] shrink-0 flex-col items-center gap-2 text-center sm:w-[92px]"
                 aria-label={`Shop ${brand.name}`}
               >
@@ -130,15 +154,15 @@ const BrandShowcase = ({ brands, variant = "mobile" }: BrandShowcaseProps) => {
           })}
 
           <Link
-            to="/products"
+            to={catalogueHref}
             className="group flex w-[84px] shrink-0 flex-col items-center gap-2 text-center sm:w-[92px]"
-            aria-label="View more brands"
+            aria-label="View more medicine brands"
           >
             <span className="flex aspect-square w-full items-center justify-center rounded-full border-2 border-dashed border-primary/45 bg-primary/5 text-primary shadow-soft transition-smooth group-hover:-translate-y-1 group-hover:border-primary group-hover:bg-primary/10 group-hover:shadow-card">
               <Ellipsis className="h-8 w-8" />
             </span>
             <span className="flex min-h-8 items-start gap-1 text-xs font-extrabold leading-4 text-primary">
-              More <ArrowRight className="mt-0.5 h-3.5 w-3.5" />
+              View More <ArrowRight className="mt-0.5 h-3.5 w-3.5" />
             </span>
           </Link>
         </div>

@@ -38,19 +38,6 @@ const MOBILE_USER_AGENT_REGEX =
 const normalizeCatalogueName = (value: string) =>
   value.toLowerCase().replace(/&/g, "and").replace(/\s+/g, " ").trim();
 
-const extractProductBrandNames = (value: unknown): string[] => {
-  if (Array.isArray(value)) {
-    return value.flatMap(extractProductBrandNames);
-  }
-
-  if (typeof value !== "string") return [];
-
-  return value
-    .split(",")
-    .map((brand) => brand.trim())
-    .filter(Boolean);
-};
-
 const findCatalogueByName = (
   catalogues: HomePageServerData["catalogues"],
   catalogueName: string,
@@ -97,7 +84,9 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
   // The homepage showcase is specifically for medicine brands. Keep the
   // unfiltered list for the navigation's global brand menu.
   const featuredBrands = medicineCatalogue?._id
-    ? await getProductBrandsWithImages(medicineCatalogue._id)
+    ? (await getProductBrandsWithImages(medicineCatalogue._id)).filter(
+        (brand) => !brand.legacy,
+      )
     : [];
 
   const [
@@ -165,20 +154,11 @@ const getHomePageServerData = async (): Promise<HomePageServerData> => {
         }
       : catalogue,
   );
-  const medicineBrandNames = new Set(
-    medicinePage.products
-      .flatMap((product) => extractProductBrandNames(product.brand))
-      .map((brand) => brand.toLowerCase()),
-  );
-  const medicineFeaturedBrands = featuredBrands.filter((brand) =>
-    medicineBrandNames.has(brand.name.toLowerCase()),
-  );
-
   return {
     catalogues: cataloguesWithCategoryImages,
     catalogueGroups,
     brands: allBrands.map((brand) => brand.name),
-    featuredBrands: medicineFeaturedBrands,
+    featuredBrands,
     desktopBanners,
     mobileBanners,
     scrollingItems,

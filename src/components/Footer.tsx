@@ -31,7 +31,7 @@ const Footer = ({ premium = true }: FooterProps) => {
           <div>
             <Link to="/" className="inline-flex items-center">
               <img
-                src="/evercaremed_logo.png"
+                src="/evercaremed_logo_footer.png"
                 alt="EvercareMed"
                 className="h-16 w-auto max-w-[210px] object-contain"
               />

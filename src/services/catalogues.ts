@@ -38,6 +38,7 @@ export type ProductBrand = {
   _id: string;
   name: string;
   image?: string;
+  legacy?: boolean;
 };
 export const ACCOUNT_TYPE_ID = "6ab6509e6b5eed1fddd778ca";
 
@@ -248,6 +249,7 @@ const extractProductBrands = (payload: unknown): ProductBrand[] => {
       image?: unknown;
       imageUrl?: unknown;
       logo?: unknown;
+      legacy?: unknown;
     };
     const name = extractBrandName(item);
 
@@ -258,6 +260,7 @@ const extractProductBrands = (payload: unknown): ProductBrand[] => {
       _id: typeof item._id === "string" && item._id ? item._id : `${name}-${index}`,
       name,
       ...(typeof image === "string" && image.trim() ? { image: image.trim() } : {}),
+      ...(typeof item.legacy === "boolean" ? { legacy: item.legacy } : {}),
     });
   });
 

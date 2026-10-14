@@ -70,7 +70,11 @@ const Index = ({ homeData }: { homeData: HomePageServerData }) => {
         />
         <CareHighlights variant="maternal" />
         <ComfortMatters />
-        <BrandShowcase brands={homeData.featuredBrands} variant="desktop" />
+        <BrandShowcase
+          brands={homeData.featuredBrands}
+          variant="desktop"
+          catalogueRoute={medicineCatalogueRoute}
+        />
         {medicineSectionProducts.length > 0 && (
           <ProductSection
             title="Medicines"
