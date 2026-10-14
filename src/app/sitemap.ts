@@ -5,6 +5,8 @@ const baseBackendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "";
 const staticRoutes = [
   "",
   "/products",
+  "/brands",
+  "/categories",
   "/offers",
   "/about-us",
   "/prenatal-postnatal-care",

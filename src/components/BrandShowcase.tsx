@@ -27,9 +27,9 @@ const getBrandMark = (brand: string) =>
 
 const BrandShowcase = ({ brands, variant = "mobile", catalogueRoute }: BrandShowcaseProps) => {
   const visibleBrands = brands.slice(0, 5);
-  const catalogueHref = catalogueRoute
-    ? `/products?category=${encodeURIComponent(catalogueRoute)}`
-    : "/products";
+  const viewMoreHref = catalogueRoute
+    ? `/brands?category=${encodeURIComponent(catalogueRoute)}`
+    : "/brands";
   const getBrandHref = (brandName: string) => {
     const params = new URLSearchParams();
 
@@ -75,7 +75,7 @@ const BrandShowcase = ({ brands, variant = "mobile", catalogueRoute }: BrandShow
                   </Link>
                 ))}
                 <Link
-                  to={catalogueHref}
+                  to={viewMoreHref}
                   className="group mx-auto flex w-full max-w-[132px] min-w-0 flex-col items-center text-center xl:max-w-[140px]"
                   aria-label="View more medicine brands"
                 >
@@ -100,10 +100,10 @@ const BrandShowcase = ({ brands, variant = "mobile", catalogueRoute }: BrandShow
                 Browse trusted medicine brands chosen for dependable quality, thoughtful formulations, and everyday wellness.
               </p>
               <Link
-                to={catalogueHref}
+                to={viewMoreHref}
                 className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#244b2e] transition duration-300 hover:-translate-y-0.5 hover:bg-[#edf5e7]"
               >
-                View all medicines <ArrowRight className="h-4 w-4" />
+                View all brands <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -118,7 +118,7 @@ const BrandShowcase = ({ brands, variant = "mobile", catalogueRoute }: BrandShow
         <div>
           <h2 className="text-xl font-black text-[#173d28] sm:text-2xl">Medicine brands</h2>
         </div>
-        <Link to={catalogueHref} className="hidden items-center gap-2 text-sm font-extrabold text-[#4f8138] sm:inline-flex">
+        <Link to={viewMoreHref} className="hidden items-center gap-2 text-sm font-extrabold text-[#4f8138] sm:inline-flex">
           Explore all <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -154,7 +154,7 @@ const BrandShowcase = ({ brands, variant = "mobile", catalogueRoute }: BrandShow
           })}
 
           <Link
-            to={catalogueHref}
+            to={viewMoreHref}
             className="group flex w-[84px] shrink-0 flex-col items-center gap-2 text-center sm:w-[92px]"
             aria-label="View more medicine brands"
           >

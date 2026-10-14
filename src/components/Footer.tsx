@@ -5,6 +5,8 @@ import type { Catalogue } from "@/services/catalogues";
 const quickLinks = [
   { label: "Home", to: "/" },
   { label: "Products", to: "/products" },
+  { label: "Brands", to: "/brands" },
+  { label: "Categories", to: "/categories" },
   { label: "Offers", to: "/offers" },
   { label: "About us", to: "/about-us" },
   { label: "Medical Tourism", to: "/ayurvedic-tourism" },

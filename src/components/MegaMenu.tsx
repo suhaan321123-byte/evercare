@@ -242,6 +242,16 @@ const MegaMenu = ({ initialCatalogues, initialGroups, initialBrands }: MegaMenuP
               {activeCategoryMenu && activeCategoryMenu.categories.length === 0 && (
                 <div className="px-3 py-2 text-sm text-muted-foreground">No categories found</div>
               )}
+              {activeCategoryMenu && activeCategoryMenu.categories.length > 0 && (
+                <div className="mt-2 border-t border-border px-3 pt-2">
+                  <Link
+                    to={`/categories${activeCatalogue ? `?category=${encodeURIComponent(activeCatalogue.route || activeCatalogue.slug || activeCatalogue.name)}` : ""}`}
+                    className="inline-flex text-sm font-extrabold text-primary transition hover:text-[#315f2a]"
+                  >
+                    View all categories
+                  </Link>
+                </div>
+              )}
               {showingBrands &&
                 resolvedBrandsLoading &&
                 Array.from({ length: 6 }).map((_, index) => (
@@ -269,6 +279,16 @@ const MegaMenu = ({ initialCatalogues, initialGroups, initialBrands }: MegaMenuP
                 </div>}
               {showingBrands && !resolvedBrandsLoading && brands.length === 0 && (
                 <div className="px-3 py-2 text-sm text-muted-foreground">No brands found</div>
+              )}
+              {showingBrands && !resolvedBrandsLoading && brands.length > 0 && (
+                <div className="mt-2 border-t border-border px-3 pt-2">
+                  <Link
+                    to="/brands"
+                    className="inline-flex text-sm font-extrabold text-primary transition hover:text-[#315f2a]"
+                  >
+                    View all brands
+                  </Link>
+                </div>
               )}
             </div>
           </div>,

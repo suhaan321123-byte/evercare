@@ -20,7 +20,7 @@ const MedicineCategories = ({ catalogues }: MedicineCategoriesProps) => {
 
   const catalogueRoute =
     medicineCatalogue.route || medicineCatalogue.slug || medicineCatalogue.name;
-  const viewAllPath = `/products?category=${encodeURIComponent(catalogueRoute)}`;
+  const viewAllPath = `/categories?category=${encodeURIComponent(catalogueRoute)}`;
 
   return (
     <section className="site-container px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
